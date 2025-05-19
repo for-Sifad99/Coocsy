@@ -1,14 +1,17 @@
 import React from 'react';
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter } from "react-router"
+import PrivetRouter from '../routes/PrivetRouter'
 import Root from '../layouts/Root'
 import Home from '../pages/Home/Home'
 import AllRecipes from '../pages/AllRecipes/AllRecipes'
+import RecipeDetails from '../pages/RecipeDetails/RecipeDetails'
 import AddRecipes from '../pages/AddRecipes/AddRecipes'
 import MyRecipes from '../pages/MyRecipes/MyRecipes'
 import Profile from '../pages/Profile/Profile'
 import Register from '../pages/Register/Register'
 import Login from '../pages/Login/Login'
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
+
 
 
 const router = createBrowserRouter([
@@ -21,27 +24,37 @@ const router = createBrowserRouter([
                 Component: Home
             },
             {
-                path: 'all-recipes',
+                path: '/all-recipes',
                 Component: AllRecipes
             },
             {
-                path: 'add-recipes',
-                element: AddRecipes
+                path: '/recipe-details',
+                element: <PrivetRouter>
+                    <RecipeDetails />
+                </PrivetRouter>
             },
             {
-                path: 'my-recipes',
-                Component: MyRecipes
+                path: '/add-recipes',
+                element: <PrivetRouter>
+                    <AddRecipes />
+                </PrivetRouter>
             },
             {
-                path: 'profile',
+                path: '/my-recipes',
+                element: <PrivetRouter>
+                    <MyRecipes />
+                </PrivetRouter>
+            },
+            {
+                path: '/profile',
                 Component: Profile
             },
             {
-                path: 'register',
+                path: '/register',
                 Component: Register
             },
             {
-                path: 'login',
+                path: '/login',
                 Component: Login
             },
         ]
