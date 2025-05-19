@@ -25,9 +25,19 @@ This project uses the following technologies and libraries:
 3. Install dependencies:
    npm install react-router-dom react-icons tailwindcss daisyui helmet
 
-4. Start the development server:
+4. Set up Firebase:
+   Create a Firebase project in Firebase Console.
+   Add your Firebase configuration in firebase.config.js
+
+5. Start the development server:
    npm run dev
 
+_____
+
+
+### 🌐 Live Site  
+You can view the live project here: [Lucky Marigold](https://lucky-marigold-d73685.netlify.app) 🚀
+   
 _____
 
 
