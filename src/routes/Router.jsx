@@ -16,13 +16,34 @@ const router = createBrowserRouter([
         path: "/",
         element: <Root />,
         children: [
-            { index: true, Component: Home },
-            { path: 'all-recipes', Component: AllRecipes },
-            { path: 'add-recipes', Component: AddRecipes },
-            { path: 'my-recipes', Component: MyRecipes },
-            { path: 'profile', Component: Profile },
-            { path: 'register', Component: Register },
-            { path: 'login', Component: Login },
+            {
+                index: true,
+                Component: Home
+            },
+            {
+                path: 'all-recipes',
+                Component: AllRecipes
+            },
+            {
+                path: 'add-recipes',
+                element: AddRecipes
+            },
+            {
+                path: 'my-recipes',
+                Component: MyRecipes
+            },
+            {
+                path: 'profile',
+                Component: Profile
+            },
+            {
+                path: 'register',
+                Component: Register
+            },
+            {
+                path: 'login',
+                Component: Login
+            },
         ]
     },
     {

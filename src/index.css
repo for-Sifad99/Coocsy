@@ -4,7 +4,9 @@
 /* This is TailwindCss */
 @import 'tailwindcss';
 /* This is Daisy Ui */
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: light --default;
+}
 
 body {
   font-family: 'JetBrains Mono', monospace;
@@ -12,4 +14,3 @@ body {
   font-weight: normal;
   font-style: normal;
 }
-
