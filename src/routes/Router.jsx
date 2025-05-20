@@ -34,7 +34,7 @@ const router = createBrowserRouter([
                 </PrivetRouter>
             },
             {
-                path: '/add-recipes',
+                path: '/add-recipe',
                 element: <PrivetRouter>
                     <AddRecipes />
                 </PrivetRouter>
