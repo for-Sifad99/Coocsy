@@ -23,7 +23,8 @@ const Header = () => {
 
     const toggleTheme = () => {
         setIsDark(prev => !prev);
-      };
+    };
+    
     // for anywhere click nav menu will be close
     useEffect(() => {
         setIsOpen(false);

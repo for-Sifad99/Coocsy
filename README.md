@@ -1,8 +1,17 @@
 🧑‍🍳 Cooksy
+
+-----
+
 A user-friendly recipe management app where food lovers can discover, add, and share recipes with ease.
 
-🌐 Live Site
-👉 Cooksy Live : https://legendary-dusk-e07f42.netlify.app/
+----
+
+🌐 Live Site ---->
+👉 Cooksy Live : https://astounding-piroshki-9a2504.netlify.app/
+
+
+-------
+
 
 🛠️ Tech Stack & Dependencies -----
 1. This project uses modern tools and technologies:
@@ -18,7 +27,7 @@ A user-friendly recipe management app where food lovers can discover, add, and s
 11. Firebase Authentication – Secure user login system
 14. MongoDB (via Express) – Storing and retrieving recipe data
 
------
+------
 
 📦 Installation Instructions
 1. Clone the repository
@@ -32,13 +41,16 @@ npm install
 
 ------
 
-🌟 Key Features
-🍽️ Add, Edit & Manage Recipes – Create and update your personal recipes
-🔥 Top Recipes Section – Highlights recipes with the most likes
-💖 Like & Wishlist – Like your favorite recipes and save to wishlist
-🔐 Authentication – Register/login with email or Google
-🕶️ Dark & Light Mode – Toggle between themes for better UX
-🧭 Responsive Design – Mobile, tablet, and desktop friendly
-🍔 Filter Recipes by Cuisine – Easily find what you’re craving
-🚫 404 Page – Beautifully themed not found page
-🎨 Unique UI Design – Custom interface built from scratch
+1. 🌟 Key Features
+2. 🍽️ Add, Edit & Manage Recipes – Create and update your personal recipes
+3. 🔥 Top Recipes Section – Highlights recipes with the most likes
+4. 💖 Like & Wishlist – Like your favorite recipes and save to wishlist
+5. 🔐 Authentication – Register/login with email or Google
+6. 🕶️ Dark & Light Mode – Toggle between themes for better UX
+7. 🧭 Responsive Design – Mobile, tablet, and desktop friendly
+8. 🍔 Filter Recipes by Cuisine – Easily find what you’re craving
+9. 🚫 404 Page – Beautifully themed not found page
+10. 🎨 Unique UI Design – Custom interface built from scratch
+
+--------
+--------

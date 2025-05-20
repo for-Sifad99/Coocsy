@@ -10,7 +10,7 @@ const Root = () => {
             <header className='bg-[var(--color-bg)] text-[var(--color-primary)]'>
                 <Header />
             </header>
-            <main>
+            <main className='bg-[var(--color-bg)] text-[var(--color-primary)] py-15'>
                 <Outlet />
             </main>
             <footer className='bg-[var(--color-bg)] text-[var(--color-primary)]'>

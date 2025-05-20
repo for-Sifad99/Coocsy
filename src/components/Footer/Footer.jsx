@@ -3,7 +3,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube, FaUtensils } from "reac
 
 const Footer = () => {
     return (
-        <footer className="pt-10 pb-8">
+        <footer className="py-10 pb-2 border-t-2 border-gray-400">
             <div className="max-w-6xl mx-auto flex flex-col items-center lg:gap-5 gap-4">
 
                 {/* Logo */}
