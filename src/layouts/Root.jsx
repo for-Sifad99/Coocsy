@@ -7,7 +7,7 @@ import Footer from '../components/Footer/Footer';
 const Root = () => {
     return (
         <>
-            <header>
+            <header className='bg-[var(--color-bg)] text-[var(--color-primary)]'>
                 <Header />
             </header>
             <main>
