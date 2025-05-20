@@ -7,7 +7,7 @@ A user-friendly recipe management app where food lovers can discover, add, and s
 ----
 
 🌐 Live Site ---->
-👉 Cooksy Live : https://astounding-piroshki-9a2504.netlify.app/
+👉 Cooksy Live : https://adorable-yeot-a1e543.netlify.app/
 
 
 -------

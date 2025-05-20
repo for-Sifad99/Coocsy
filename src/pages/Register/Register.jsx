@@ -9,7 +9,7 @@ const Register = () => {
     return (
         <div className="max-w-xl mx-auto p-8 rounded-lg shadow-xl shadow-[var(--color-accent)] border border-[var(--color-base-200)] bg-[var(--color-bg)]">
             <h2 className="text-5xl font-bold mb-6 text-center text-[var(--color-secondary)]">
-                Register Yourself
+                Register Now!
             </h2>
 
             <div className="mt-10 mb-3 text-center mx-auto flex items-center justify-center">
