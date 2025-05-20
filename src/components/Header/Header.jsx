@@ -104,7 +104,7 @@ const Header = () => {
                 {/* Logo */}
                 <NavLink to="/" className="text-2xl font-bold text-[var(--color-secondary)] flex items-center gap-2">
                     <FaUtensils />
-                    <strong className="extra-bold">Platea</strong>
+                    <strong className="extra-bold">Cooksy</strong>
                 </NavLink>
 
                 {/* Desktop Nav */}
@@ -207,7 +207,7 @@ const Header = () => {
                         <div className="flex justify-between items-center mb-6">
                             <h2 className="text-xl font-bold text-[var(--color-secondary)] flex items-center gap-2">
                                 <FaUtensils />
-                                <strong className="extra-bold">Platea</strong>
+                                <strong className="extra-bold">Cooksy</strong>
                             </h2>
                             <button
                                 className="text-2xl text-[var(--color-primary)]"

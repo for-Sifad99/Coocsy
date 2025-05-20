@@ -1,51 +1,44 @@
-# Recipe Book
+🧑‍🍳 Cooksy
+A user-friendly recipe management app where food lovers can discover, add, and share recipes with ease.
 
-A user-friendly recipe management app where food enthusiasts can discover, save, and share recipes effortlessly.
+🌐 Live Site
+👉 Cooksy Live : https://dancing-creponne-737699.netlify.app/
 
-## Repository
-[GitHub Repo](https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-for-Sifad99)
+🛠️ Tech Stack & Dependencies -----
+1. This project uses modern tools and technologies:
+2. React (with Vite) – Fast development and build setup
+3. Tailwind CSS – Utility-first CSS framework
+4. DaisyUI – Ready-made styled components
+5. React Icons – For beautiful icon integration
+6. React Toastify – Elegant toast notifications
+7. SweetAlert2 – Stylish alert messages
+8. Lottie React – For engaging animations
+9. React Awesome Reveal – For animated content appearance
+10. React Helmet Async – Managing document head for SEO
+11. Firebase Authentication – Secure user login system
+14. MongoDB (via Express) – Storing and retrieving recipe data
 
-## Tech Stack & Dependencies
-This project uses the following technologies and libraries:
-- **React with Vite** – Fast development environment
-- **React Router** – For seamless navigation
-- **React Icons** – Beautiful and customizable icons
-- **Tailwind CSS** – Utility-first styling framework
-- **Daisy UI** – Component-based styling enhancements
-- **Helmet** – Managing document head for improved SEO and metadata control
+-----
 
-## Installation
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-for-Sifad99
+📦 Installation Instructions
+1. Clone the repository
+git clone https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-for-Sifad99
 
-2. Navigate to the project folder:
-   cd recipe-book
+2. Navigate to project folder
+cd cooksy
 
-3. Install dependencies:
-   npm install react-router-dom react-icons tailwindcss daisyui helmet
+3. Install dependencies
+npm install
 
-4. Set up Firebase:
-   Create a Firebase project in Firebase Console.
-   Add your Firebase configuration in firebase.config.js
+------
 
-5. Start the development server:
-   npm run dev
-
-_____
-
-
-### 🌐 Live Site  
-You can view the live project here: [Lucky Marigold](https://lucky-marigold-d73685.netlify.app) 🚀
-   
-_____
-
-
-Usage
-- Add, edit, and manage personal recipes
-- Discover trending recipes based on user likes
-- Save favorite recipes to a wishlist
-- Like recipes to promote them to the Top Recipes section
-
-You're all set! Let me know if you need anything else. 🚀
-This now ensures all dependencies are installed in one command. Hope this helps!
+🌟 Key Features
+🍽️ Add, Edit & Manage Recipes – Create and update your personal recipes
+🔥 Top Recipes Section – Highlights recipes with the most likes
+💖 Like & Wishlist – Like your favorite recipes and save to wishlist
+🔐 Authentication – Register/login with email or Google
+🕶️ Dark & Light Mode – Toggle between themes for better UX
+🧭 Responsive Design – Mobile, tablet, and desktop friendly
+🍔 Filter Recipes by Cuisine – Easily find what you’re craving
+🚫 404 Page – Beautifully themed not found page
+🎨 Unique UI Design – Custom interface built from scratch
