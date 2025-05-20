@@ -7,25 +7,24 @@ A user-friendly recipe management app where food lovers can discover, add, and s
 ----
 
 🌐 Live Site ---->
-👉 Cooksy Live : https://adorable-yeot-a1e543.netlify.app/
+👉 Cooksy Live : https://bespoke-bunny-4efd24.netlify.app/
 
 
 -------
 
 
 🛠️ Tech Stack & Dependencies -----
-1. This project uses modern tools and technologies:
-2. React (with Vite) – Fast development and build setup
-3. Tailwind CSS – Utility-first CSS framework
-4. DaisyUI – Ready-made styled components
-5. React Icons – For beautiful icon integration
-6. React Toastify – Elegant toast notifications
-7. SweetAlert2 – Stylish alert messages
-8. Lottie React – For engaging animations
-9. React Awesome Reveal – For animated content appearance
-10. React Helmet Async – Managing document head for SEO
-11. Firebase Authentication – Secure user login system
-14. MongoDB (via Express) – Storing and retrieving recipe data
+1. This project uses modern tools and technologies.
+2. React (with Vite) – Fast development and build setup.
+3. Tailwind CSS – Utility-first CSS framework.
+4. DaisyUI – Ready-made styled components.
+5. React Icons – For beautiful icon integration.
+6. React Toastify – Elegant toast notifications.
+7. SweetAlert2 – Stylish alert messages.
+8. Lottie React – For engaging animations.
+9. React Helmet Async – Managing document head for SEO.
+10. Firebase Authentication – Secure user login system.
+11. MongoDB (via Express) – Storing and retrieving recipe data
 
 ------
 
