@@ -13,7 +13,7 @@ const Root = () => {
             <main>
                 <Outlet />
             </main>
-            <footer>
+            <footer className='bg-[var(--color-bg)] text-[var(--color-primary)]'>
                 <Footer />
             </footer>
         </>

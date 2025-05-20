@@ -6,29 +6,25 @@ import { useState, useEffect } from "react";
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const location = useLocation();
-    const [theme, setTheme] = useState("light");
+
+    const [isDark, setIsDark] = useState(() => {
+        return localStorage.getItem('theme') === 'dark';
+    });
 
     useEffect(() => {
-        // Get from localStorage
-        const saved = localStorage.getItem("theme");
-        if (saved) {
-            setTheme(saved);
-            document.documentElement.classList.add(saved);
+        if (isDark) {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
         } else {
-            document.documentElement.classList.add("light");
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
         }
-    }, []);
-
-    useEffect(() => {
-        document.documentElement.classList.remove("light", "dark");
-        document.documentElement.classList.add(theme);
-        localStorage.setItem("theme", theme);
-    }, [theme]);
+    }, [isDark]);
 
     const toggleTheme = () => {
-        setTheme(prev => (prev === "light" ? "dark" : "light"));
-    };
-
+        setIsDark(prev => !prev);
+      };
+    // for anywhere click nav menu will be close
     useEffect(() => {
         setIsOpen(false);
     }, [location.pathname]);
@@ -43,13 +39,16 @@ const Header = () => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
+    // Navbar links active style here
     const navLinkStyle = ({ isActive }) =>
         `font-semibold lg:px-3 px-2 lg:py-2 py-1 rounded-full transition-all duration-200 text-base md:text-xs xl:text-sm
         ${isActive ? "bg-[var(--color-secondary-light)] text-[var(--color-secondary)]" : "text-[var(--color-accent)] hover:bg-[var(--color-secondary-light)] hover:text-[var(--color-secondary)]"}`;
 
+    // Navbar register icon active style here
     const activeRegisterStyle = ({ isActive }) =>
         `lg:text-2xl text-3xl hover:text-[var(--color-secondary)] transition ${isActive ? "text-[var(--color-secondary)]" : "text-[var(--color-primary)]"}`;
 
+    // Navbar login icon active style here
     const activeLoginStyle = ({ isActive }) =>
         `group font-semibold text-black bg-[var(--color-btn-bg)] px-6 py-2 text-sm md:text-base rounded-full hover:bg-[var(--color-secondary)] hover:text-black transition ${isActive ? "bg-[var(--color-secondary)]" : ""}`;
 
@@ -102,9 +101,9 @@ const Header = () => {
         <nav className="px-4 py-3 md:px-10 lg:px-24 lg:py-4">
             <div className="flex items-center">
                 {/* Logo */}
-                <NavLink to="/" className="text-2xl font-bold text-[var(--color-secondary)] flex items-center gap-2">
-                    <FaUtensils />
-                    <strong className="extra-bold">Cooksy</strong>
+                <NavLink to="/" className="text-2xl font-bold text-[var(--color-primary)] flex items-center gap-2">
+                    <FaUtensils className="text-[var(--color-secondary)]" />
+                    <strong>C<span className="text-[var(--color-secondary)]">oo</span>ksy</strong>
                 </NavLink>
 
                 {/* Desktop Nav */}
@@ -116,9 +115,24 @@ const Header = () => {
                 <div className="hidden lg:flex items-center gap-4">
                     {/* Theme Toggle */}
                     <label className="toggle text-base-content bg-white">
-                        <input onClick={toggleTheme} type="checkbox" value="synthwave" className="theme-controller" />
-                        <svg aria-label="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor">
+                        <input
+                            type="checkbox"
+                            onChange={toggleTheme}
+                            checked={isDark}
+                            className="theme-controller"
+                        />
+                        <svg
+                            aria-label="sun"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                        >
+                            <g
+                                strokeLinejoin="round"
+                                strokeLinecap="round"
+                                strokeWidth="2"
+                                fill="none"
+                                stroke="currentColor"
+                            >
                                 <circle cx="12" cy="12" r="4"></circle>
                                 <path d="M12 2v2"></path>
                                 <path d="M12 20v2"></path>
@@ -130,8 +144,18 @@ const Header = () => {
                                 <path d="m19.07 4.93-1.41 1.41"></path>
                             </g>
                         </svg>
-                        <svg aria-label="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor">
+                        <svg
+                            aria-label="moon"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                        >
+                            <g
+                                strokeLinejoin="round"
+                                strokeLinecap="round"
+                                strokeWidth="2"
+                                fill="none"
+                                stroke="currentColor"
+                            >
                                 <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
                             </g>
                         </svg>

@@ -2,7 +2,7 @@
 A user-friendly recipe management app where food lovers can discover, add, and share recipes with ease.
 
 🌐 Live Site
-👉 Cooksy Live : https://dancing-creponne-737699.netlify.app/
+👉 Cooksy Live : https://legendary-dusk-e07f42.netlify.app/
 
 🛠️ Tech Stack & Dependencies -----
 1. This project uses modern tools and technologies:

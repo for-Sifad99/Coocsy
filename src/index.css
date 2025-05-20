@@ -23,6 +23,7 @@ body {
   --color-bg: #ffffff;
   --color-primary: #000; 
   --color-accent: #4a4a4a;      
+  --color-base-200: #9e9b9b;      
   --color-secondary: #e92d28;    /* text-red-600 */
   --color-secondary-light: #fff0f0; 
   --color-secondary-hover: #fecaca; 
@@ -34,7 +35,8 @@ body {
 .dark {
     --color-bg: #1f2937;
     --color-primary: #e8eaee ; 
-    --color-accent: #d6d9df;    
+    --color-accent: #d6d9df;   
+    --color-base-200: #aca8a8; 
     --color-secondary: #f87171; 
     --color-secondary-light: #fff0f0; 
     --color-secondary-hover: #fecaca;    
