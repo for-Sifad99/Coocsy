@@ -5,16 +5,17 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     //? Create User:
     const createUser = (email, password) => {
-        // setLoading(true);
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     };
 
     //? Signin User:
     const signInUser = (email, password) => {
-        // setLoading(true);
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     };
 
@@ -31,13 +32,15 @@ const AuthProvider = ({ children }) => {
 
     //? SignOut:
     const userSignout = () => {
-        // setLoading(true);
+        setLoading(true);
         return signOut(auth);
     };
 
     const authData = {
         user,
+        loading,
         setUser,
+        setLoading,
         createUser,
         googleSignIn,
         signInUser,
@@ -49,12 +52,12 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
-            // setLoading(false);
+            setLoading(false);
             console.log('Observed user: ', currentUser);
         });
 
         return () => {
-            unSubscribe();  // cleanup
+            unSubscribe(); // cleanup
         };
     }, []); // empty dependency list
 

@@ -53,7 +53,7 @@ const Register = () => {
                 setSuccess(true);
 
                 setTimeout(() => {
-                    navigate('/');
+                    navigate(location.state?.from || '/');
                 }, 2000);
             })
             .catch((err) => {
