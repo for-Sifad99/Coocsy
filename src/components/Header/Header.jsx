@@ -1,9 +1,12 @@
 import { NavLink, useLocation } from "react-router";
 import { FaUtensils, FaUserPlus, FaBars, FaTimes, FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { IoMdLogIn } from "react-icons/io";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../Contexts/AuthContext";
+import UserProfile from "../UserProfile/UserProfile";
 
 const Header = () => {
+    const { user } = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
     const location = useLocation();
 
@@ -24,7 +27,7 @@ const Header = () => {
     const toggleTheme = () => {
         setIsDark(prev => !prev);
     };
-    
+
     // for anywhere click nav menu will be close
     useEffect(() => {
         setIsOpen(false);
@@ -162,48 +165,34 @@ const Header = () => {
                         </svg>
                     </label>
 
-                    <NavLink to="/register" className={activeRegisterStyle}>
-                        <FaUserPlus />
-                    </NavLink>
+                    {user?.email ? (
+                        // User logged in => Show profile picture
+                        <UserProfile />
+                    ) : (
+                        // User not logged in => Show Login and Register buttons
+                        <>
+                            <NavLink to="/register" className={activeRegisterStyle}>
+                                <FaUserPlus />
+                            </NavLink>
 
-                    <NavLink
-                        to="/login"
-                        className={activeLoginStyle}
-                    >
-                        <span className="flex items-center gap-1">
-                            Login
-                            <strong className="transition-transform duration-300 group-hover:translate-x-1">
-                                <IoMdLogIn />
-                            </strong>
-                        </span>
-                    </NavLink>
-
+                            <NavLink
+                                to="/login"
+                                className={activeLoginStyle}
+                            >
+                                <span className="flex items-center gap-1">
+                                    Login
+                                    <strong className="transition-transform duration-300 group-hover:translate-x-1">
+                                        <IoMdLogIn />
+                                    </strong>
+                                </span>
+                            </NavLink>
+                        </>
+                    )}
                 </div>
 
                 {/* Mobile Hamburger + Theme Toggle */}
                 <div className="lg:hidden flex items-center gap-2 ml-auto">
-                    {/* Theme Toggle */}
-                    <label className="toggle text-base-content bg-white">
-                        <input onClick={toggleTheme} type="checkbox" value="synthwave" className="theme-controller" />
-                        <svg aria-label="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor">
-                                <circle cx="12" cy="12" r="4"></circle>
-                                <path d="M12 2v2"></path>
-                                <path d="M12 20v2"></path>
-                                <path d="m4.93 4.93 1.41 1.41"></path>
-                                <path d="m17.66 17.66 1.41 1.41"></path>
-                                <path d="M2 12h2"></path>
-                                <path d="M20 12h2"></path>
-                                <path d="m6.34 17.66-1.41 1.41"></path>
-                                <path d="m19.07 4.93-1.41 1.41"></path>
-                            </g>
-                        </svg>
-                        <svg aria-label="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor">
-                                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-                            </g>
-                        </svg>
-                    </label>
+                    {user?.email && <UserProfile />}
 
                     <button
                         className="text-2xl text-[var(--color-primary)]"
@@ -219,7 +208,7 @@ const Header = () => {
                 <div
                     onClick={() => setIsOpen(false)}
                     className="fixed inset-0 bg-opacity-20 z-50"
-                />
+                ></div>
             )}
 
             {/* Mobile Menu */}
@@ -234,12 +223,37 @@ const Header = () => {
                                 <FaUtensils />
                                 <strong className="extra-bold">Cooksy</strong>
                             </h2>
-                            <button
-                                className="text-2xl text-[var(--color-primary)]"
-                                onClick={() => setIsOpen(false)}
-                            >
-                                <FaTimes />
-                            </button>
+
+                            <div className="flex items-center gap-2">
+                                {/* Theme Toggle */}
+                                <label className="toggle text-base-content bg-white">
+                                    <input onClick={toggleTheme} type="checkbox" value="synthwave" className="theme-controller" />
+                                    <svg aria-label="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor">
+                                            <circle cx="12" cy="12" r="4"></circle>
+                                            <path d="M12 2v2"></path>
+                                            <path d="M12 20v2"></path>
+                                            <path d="m4.93 4.93 1.41 1.41"></path>
+                                            <path d="m17.66 17.66 1.41 1.41"></path>
+                                            <path d="M2 12h2"></path>
+                                            <path d="M20 12h2"></path>
+                                            <path d="m6.34 17.66-1.41 1.41"></path>
+                                            <path d="m19.07 4.93-1.41 1.41"></path>
+                                        </g>
+                                    </svg>
+                                    <svg aria-label="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor">
+                                            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                                        </g>
+                                    </svg>
+                                </label>
+                                <button
+                                    className="text-2xl text-[var(--color-primary)]"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    <FaTimes />
+                                </button>
+                            </div>
                         </div>
 
                         <div className="flex flex-col items-center gap-4 text-center">
@@ -247,22 +261,24 @@ const Header = () => {
                         </div>
                     </div>
 
-                    <div className="flex flex-col items-center gap-4 mb-auto mt-4">
-                        <NavLink to="/register">
-                            <FaUserPlus className={activeRegisterStyle} />
-                        </NavLink>
-                        <NavLink
-                            to="/login"
-                            className={activeLoginStyle}
-                        >
-                            <span className="flex items-center gap-1">
-                                Login
-                                <strong className="transition-transform duration-300 group-hover:translate-x-1">
-                                    <IoMdLogIn />
-                                </strong>
-                            </span>
-                        </NavLink>
-                    </div>
+                    {user?.email ?
+                        '' : <div className="flex flex-col items-center gap-4 mb-auto mt-4">
+                            <NavLink to="/register">
+                                <FaUserPlus className={activeRegisterStyle} />
+                            </NavLink>
+                            <NavLink
+                                to="/login"
+                                className={activeLoginStyle}
+                            >
+                                <span className="flex items-center gap-1">
+                                    Login
+                                    <strong className="transition-transform duration-300 group-hover:translate-x-1">
+                                        <IoMdLogIn />
+                                    </strong>
+                                </span>
+                            </NavLink>
+                        </div>
+                    }
                 </div>
             </div>
         </nav>

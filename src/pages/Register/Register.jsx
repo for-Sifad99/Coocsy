@@ -4,7 +4,7 @@ import { AuthContext } from "../../Contexts/AuthContext";
 import { toast } from 'react-toastify';
 import Lottie from "lottie-react";
 import successAnimation from "../../assets/animations/successLottie.json";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 
 const Register = () => {

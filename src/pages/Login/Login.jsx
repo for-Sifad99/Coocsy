@@ -5,8 +5,8 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 import Lottie from "lottie-react";
 import successAnimation from "../../assets/animations/successLottie.json";
-import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
     const { signInUser, googleSignIn, forgotPassword, setUser } = useContext(AuthContext);
