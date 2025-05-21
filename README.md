@@ -22,9 +22,12 @@ A user-friendly recipe management app where food lovers can discover, add, and s
 6. React Toastify – Elegant toast notifications.
 7. SweetAlert2 – Stylish alert messages.
 8. Lottie React – For engaging animations.
-9. React Helmet Async – Managing document head for SEO.
-10. Firebase Authentication – Secure user login system.
-11. MongoDB (via Express) – Storing and retrieving recipe data
+9. react-spinners – Loader spinner component for smooth loading effects.
+10. react-simple-typewriter – Animated typing effect for error pages and headings.
+11.  React Helmet Async – Managing document head for SEO.
+13. Firebase Authentication – Secure user login system.
+14. MongoDB (via Express) – Storing and retrieving recipe data
+
 
 ------
 
