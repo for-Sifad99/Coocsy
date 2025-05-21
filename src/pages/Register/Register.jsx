@@ -131,7 +131,7 @@ const Register = () => {
                     <button
                         onClick={handleGoogleSignIn}
                         type="button"
-                        className="w-[70%] hover:w-full inline-flex items-center text-center justify-center gap-2 px-6 py-2 border border-gray-300 rounded-full hover:bg-[var(--color-secondary-light)] hover:text-[var(--color-secondary)] transition font-semibold"
+                        className="w-full max-w-xs sm:max-w-md md:max-w-[70%] inline-flex items-center justify-center gap-2 px-6 py-2 border border-gray-300 rounded-full hover:bg-[var(--color-secondary-light)] hover:text-[var(--color-secondary)] transition font-semibold text-sm sm:text-base"
                     >
                         {/* Google Icon SVG */}
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">

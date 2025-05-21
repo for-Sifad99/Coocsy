@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
 import { auth } from "../../firebase/firebase.config";
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth';
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-
 
     //? Create User:
     const createUser = (email, password) => {
@@ -13,24 +12,37 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password);
     };
 
+    //? Signin User:
+    const signInUser = (email, password) => {
+        // setLoading(true);
+        return signInWithEmailAndPassword(auth, email, password);
+    };
+
+    //? Forgot Password:
+    const forgotPassword = (email) => {
+        return sendPasswordResetEmail(auth, email)
+    }
+
     //? Google Sign in:
     const provider = new GoogleAuthProvider();
     const googleSignIn = () => {
         return signInWithPopup(auth, provider)
-     }
+    }
 
-    // //? Update User:
+    //? Update User:
     const updateUser = (userInfo) => {
         // setLoading(true);
         return updateProfile(auth.currentUser, userInfo)
-        }
+    }
 
     const authData = {
         user,
         setUser,
         createUser,
         googleSignIn,
-        updateUser
+        updateUser,
+        signInUser,
+        forgotPassword
     }
 
     //? Observation :

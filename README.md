@@ -7,7 +7,7 @@ A user-friendly recipe management app where food lovers can discover, add, and s
 ----
 
 🌐 Live Site ---->
-👉 Cooksy Live : https://bespoke-bunny-4efd24.netlify.app/
+👉 Cooksy Live : https://jazzy-maamoul-e7fab0.netlify.app/
 
 
 -------
