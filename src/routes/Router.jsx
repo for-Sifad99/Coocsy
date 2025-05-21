@@ -5,7 +5,7 @@ import Root from '../layouts/Root'
 import Home from '../pages/Home/Home'
 import AllRecipes from '../pages/AllRecipes/AllRecipes'
 import RecipeDetails from '../pages/RecipeDetails/RecipeDetails'
-import AddRecipes from '../pages/AddRecipes/AddRecipes'
+import AddRecipe from '../pages/AddRecipe/AddRecipe'
 import MyRecipes from '../pages/MyRecipes/MyRecipes'
 import Register from '../pages/Register/Register'
 import Login from '../pages/Login/Login'
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
             {
                 path: '/add-recipe',
                 element: <PrivetRouter>
-                    <AddRecipes />
+                    <AddRecipe />
                 </PrivetRouter>
             },
             {

@@ -45,7 +45,7 @@ const Header = () => {
 
     // Navbar links active style here
     const navLinkStyle = ({ isActive }) =>
-        `font-semibold lg:px-3 px-2 lg:py-2 py-1 rounded-full transition-all duration-200 text-base md:text-xs xl:text-sm
+        `font-semibold px-3 lg:py-2 py-1 rounded-full transition-all duration-200 text-base md:text-xs xl:text-sm
         ${isActive ? "bg-[var(--color-secondary-light)] text-[var(--color-secondary)]" : "text-[var(--color-accent)] hover:bg-[var(--color-secondary-light)] hover:text-[var(--color-secondary)]"}`;
 
     // Navbar register icon active style here
