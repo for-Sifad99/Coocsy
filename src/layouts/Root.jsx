@@ -10,7 +10,7 @@ const Root = () => {
             <header className='bg-[var(--color-bg)] text-[var(--color-primary)]'>
                 <Header />
             </header>
-            <main className='bg-[var(--color-bg)] text-[var(--color-primary)] pt-6 pb-10'>
+            <main className='bg-[var(--color-bg)] text-[var(--color-primary)]'>
                 <Outlet />
             </main>
             <footer className='bg-[var(--color-bg)] text-[var(--color-primary)]'>

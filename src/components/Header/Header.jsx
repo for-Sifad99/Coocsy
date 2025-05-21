@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router";
+import { Link, NavLink, useLocation } from "react-router";
 import { FaUtensils, FaUserPlus, FaBars, FaTimes, FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { IoMdLogIn } from "react-icons/io";
 import { useState, useEffect, useContext } from "react";
@@ -102,13 +102,13 @@ const Header = () => {
     );
 
     return (
-        <nav className="px-4 py-3 md:px-10 lg:px-24 lg:py-4">
+        <nav className="px-4 py-3 md:px-10 lg:px-24 lg:py-5">
             <div className="flex items-center">
                 {/* Logo */}
-                <NavLink to="/" className="text-2xl font-bold text-[var(--color-primary)] flex items-center gap-2">
+                <Link to="/" className="text-4xl font-bold text-[var(--color-primary)] flex items-center gap-2">
                     <FaUtensils className="text-[var(--color-secondary)]" />
-                    <strong>C<span className="text-[var(--color-secondary)]">oo</span>ksy</strong>
-                </NavLink>
+                    <strong><span className='-rotate-16 inline-block text-5xl'>ｃ</span><span className="text-[var(--color-secondary)]">oo</span>ksy</strong>
+                </Link>
 
                 {/* Desktop Nav */}
                 <div className="hidden md:flex items-start xl:gap-4 md:gap-2 xl:ml-10 lg:ml-3 md:ml-6 mr-auto">
@@ -216,13 +216,13 @@ const Header = () => {
                 className={`fixed top-0 right-0 h-screen w-full max-full bg-[var(--color-bg)] z-50 transform transition-transform duration-300
                 ${isOpen ? "translate-x-0" : "translate-x-full"}`}
             >
-                <div className="px-6 py-3 h-full flex flex-col justify-between">
+                <div className="px-6 py-4 h-full flex flex-col justify-between">
                     <div>
                         <div className="flex justify-between items-center mb-6">
-                            <h2 className="text-xl font-bold text-[var(--color-secondary)] flex items-center gap-2">
-                                <FaUtensils />
-                                <strong className="extra-bold">Cooksy</strong>
-                            </h2>
+                            <Link to='/' className="text-3xl font-bold text-[var(--color-primary)] flex items-center gap-2">
+                                <FaUtensils className="text-[var(--color-secondary)]"/>
+                                <strong><span className='-rotate-16 inline-block text-4xl'>ｃ</span><span className="text-[var(--color-secondary)]">oo</span>ksy</strong>
+                            </Link>
 
                             <div className="flex items-center gap-2">
                                 {/* Theme Toggle */}

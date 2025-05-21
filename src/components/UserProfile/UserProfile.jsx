@@ -38,7 +38,7 @@ const UserProfile = () => {
             <img
                 src={user?.photoURL || "/default-user.png"}
                 alt="User"
-                className="w-10 h-10 rounded-full border-4 border-[var(--color-secondary-light)] cursor-pointer"
+                className="w-12 h-12 rounded-full border-4 border-[var(--color-secondary-light)] cursor-pointer"
                 onClick={() => setIsOpen(!isOpen)}
             />
 

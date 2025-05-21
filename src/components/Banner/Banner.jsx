@@ -1,0 +1,58 @@
+import React from 'react';
+import { FaUtensils } from 'react-icons/fa';
+import bannerImg from '../../assets/component-imgs/banner.png';
+
+const Banner = () => {
+    return (
+        <section
+            className="relative w-full lg:h-screen md:h-[80vh] sm:h-[74vh] h-[54vh] bg-no-repeat bg-center bg-cover"
+            style={{ backgroundImage: `url(${bannerImg})` }}
+        >
+            {/* Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center px-4 max-w-3xl w-full text-gray-900">
+                    {/* Title */}
+                    <h1 className="text-4xl sm:text-5xl md:text-8xl font-bold mb-3 sm:mb-4">  
+                        <strong>
+                            <span className='text-5xl sm:text-6xl md:text-9xl font-extrabold -rotate-16 inline-block'>ｃ</span>
+                            <span className="text-red-600">oo</span>ksy
+                        </strong>
+
+                    </h1>
+
+                    {/* Description */}
+                    <p className="text-base sm:text-lg md:text-xl mb-4 sm:mb-6 px-2 font-semibold">
+                        Discover delicious recipes and share your culinary creations with the world!
+                    </p>
+
+                    {/* Search Form */}
+                    <form className="mt-3 sm:mt-5">
+                        <div className="max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-xl bg-[#f3f1f1] flex items-center gap-2 p-2 sm:p-3 rounded mx-auto">
+                            <label className="flex items-center w-full pr-2 bg-[#f3f1f1] border-2 border-[#f3f1f1] rounded">
+                                <FaUtensils
+                                    size={20}
+                                    className="text-red-600 mr-2 min-w-[20px]"
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="find recipes"
+                                    className="w-full text-sm sm:text-base p-2 focus:outline-none text-black bg-[#f3f1f1] placeholder:text-xs sm:placeholder:text-sm"
+                                />
+                            </label>
+                            <div className="w-auto">
+                                <button
+                                    type="button"
+                                    className="w-[80px] sm:w-[100px] md:w-[110px] lg:w-[140px] bg-red-500 text-white hover:bg-red-600 text-xs sm:text-sm px-2 py-2 sm:px-4 sm:py-3 rounded-lg transition duration-500 cursor-pointer"
+                                >
+                                    Search
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default Banner;

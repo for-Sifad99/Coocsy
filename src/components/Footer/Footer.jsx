@@ -9,7 +9,7 @@ const Footer = () => {
                 {/* Logo */}
                 <Link to="/" className="text-5xl font-bold text-[var(--color-primary)] flex items-center gap-2 pb-4">
                     <FaUtensils className="text-[var(--color-secondary)]" />
-                    <strong className="extra-bold">C<span className="text-[var(--color-secondary)]">oo</span>ksy</strong>
+                    <strong className="extra-bold"><span className='-rotate-16 inline-block text-6xl'>ｃ</span><span className="text-[var(--color-secondary)]">oo</span>ksy</strong>
                 </Link>
 
                 {/* Social + Links Row */}
