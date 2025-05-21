@@ -7,7 +7,6 @@ import AllRecipes from '../pages/AllRecipes/AllRecipes'
 import RecipeDetails from '../pages/RecipeDetails/RecipeDetails'
 import AddRecipes from '../pages/AddRecipes/AddRecipes'
 import MyRecipes from '../pages/MyRecipes/MyRecipes'
-import Profile from '../pages/Profile/Profile'
 import Register from '../pages/Register/Register'
 import Login from '../pages/Login/Login'
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
@@ -44,10 +43,6 @@ const router = createBrowserRouter([
                 element: <PrivetRouter>
                     <MyRecipes />
                 </PrivetRouter>
-            },
-            {
-                path: '/profile',
-                Component: Profile
             },
             {
                 path: '/register',
