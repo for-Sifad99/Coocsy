@@ -60,8 +60,8 @@ const Register = () => {
                 toast.error(`Registration failed: ${err.message}`);
             });
     };
-      
-    
+
+
     // Google authentication sign up
     const handleGoogleSignIn = () => {
         googleSignIn()
@@ -76,7 +76,7 @@ const Register = () => {
             })
             .catch((err) => toast.error(err.message));
     };
-    
+
 
     return (
         <>

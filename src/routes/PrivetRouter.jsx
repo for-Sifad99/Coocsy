@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Contexts/AuthContext'; // ✅ named import
 import { Navigate } from 'react-router'; // should be 'react-router-dom', not 'react-router'
+import Loader from '../components/Loader/Loader';
 
 const PrivetRouter = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
 
     // set loading when user Null
     if (loading) {
-        return <h1>LOADING.....</h1>
+        return <Loader />
     }
 
     // return children after user login
