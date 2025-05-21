@@ -213,7 +213,7 @@ const Header = () => {
 
             {/* Mobile Menu */}
             <div
-                className={`fixed top-0 right-0 h-full w-full max-full bg-[var(--color-bg)] z-50 transform transition-transform duration-300
+                className={`fixed top-0 right-0 h-screen w-full max-full bg-[var(--color-bg)] z-50 transform transition-transform duration-300
                 ${isOpen ? "translate-x-0" : "translate-x-full"}`}
             >
                 <div className="px-6 py-3 h-full flex flex-col justify-between">
@@ -256,15 +256,15 @@ const Header = () => {
                             </div>
                         </div>
 
-                        <div className="flex flex-col items-center gap-4 text-center">
+                        <div className="flex flex-col justify-center mt-20 items-center gap-4 text-center">
                             {navLinks}
                         </div>
                     </div>
 
                     {user?.email ?
                         '' : <div className="flex flex-col items-center gap-4 mb-auto mt-4">
-                            <NavLink to="/register">
-                                <FaUserPlus className={activeRegisterStyle} />
+                            <NavLink to="/register" className={activeRegisterStyle}>
+                                <FaUserPlus />
                             </NavLink>
                             <NavLink
                                 to="/login"
