@@ -21,6 +21,7 @@ body {
 /* Light Theme */
 :root {
   --color-bg: #ffffff;
+  --color-section-bg: #f1eeee;
   --color-primary: #000; 
   --color-accent: #4a4a4a;      
   --color-base-200: #9e9b9b;      
@@ -34,6 +35,7 @@ body {
 /* Dark Theme */
 .dark {
     --color-bg: #1f2937;
+    --color-section-bg: rgb(24, 34, 46);
     --color-primary: #e8eaee ; 
     --color-accent: #d6d9df;   
     --color-base-200: #aca8a8; 
