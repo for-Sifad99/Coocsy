@@ -3,8 +3,6 @@ import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
 const AddRecipe = () => {
-
-
     const categories = ["Breakfast", "Lunch", "Dinner", "Dessert", "Vegan", "Snacks"];
 
     const handleSubmit = (e) => {
@@ -12,14 +10,12 @@ const AddRecipe = () => {
         const form = e.target;
         const formdata = new FormData(form);
         const newRecipe = Object.fromEntries(formdata.entries())
-        toast.success("Recipe added successfully!");
-
-
+        
         // Create a new recipe in the DB:
-        fetch('http://localhost:3000/recipes', {
+        fetch('http://localhost:3000/addRecipes', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(newRecipe)
         })
@@ -27,13 +23,15 @@ const AddRecipe = () => {
             .then(data => {
                 if (data.insertedId) {
                     Swal.fire({
-                        title: "recipes Added Successfully!",
+                        title: "Recipe Added Successfully!",
                         icon: "success",
-                        draggable: true
+                        draggable: true,
                     });
-                    // form.reset();
-                };
-            })
+                    form.reset();
+                } else {
+                    toast.error("Failed to add recipe.");
+                }
+            })         
     }
 
     return (
