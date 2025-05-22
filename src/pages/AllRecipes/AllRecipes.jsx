@@ -81,7 +81,7 @@ const AllRecipes = () => {
                                     </div>
 
                                     <div>
-                                        <h3 className="text-2xl
+                                        <h3 className="text-2xl text-black
                                     font-bold hover:underline cursor-pointer line-clamp-1">
                                             {title}
                                         </h3>
