@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Banner from '../../components/Banner/Banner';
 import TopRecipes from '../../components/TopRecipes/TopRecipes';
+import Inspiration from '../../components/Inspiration/Inspiration';
 
 
 const Home = () => {
@@ -21,6 +22,11 @@ const Home = () => {
             {/* Top Recipes Section */}
             <section>
                 <TopRecipes />
+            </section>
+
+            {/* Inspiration Section */}
+            <section>
+                <Inspiration />
             </section>
 
 

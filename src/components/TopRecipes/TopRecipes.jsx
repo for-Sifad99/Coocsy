@@ -58,7 +58,7 @@ const TopRecipes = () => {
     ];
 
     return (
-        <section className="bg-[#f9f6f3] py-12 px-4">
+        <section className="bg-[#f9f6f3] py-14 px-4">
             <div className="max-w-7xl mx-auto">
                 <h2 className="text-4xl font-bold text-center mb-4">
                     🍽️ Top Recipes!
