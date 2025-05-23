@@ -10,7 +10,7 @@ const Banner = () => {
         >
             {/* Overlay */}
             <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center px-4 max-w-3xl w-full text-gray-900">
+                <div className="text-center px-4 max-w-4xl w-full text-gray-900">
                     {/* Title */}
                     <h1 className="text-4xl sm:text-5xl md:text-8xl font-bold mb-3 sm:mb-4">  
                         <strong>
@@ -22,7 +22,7 @@ const Banner = () => {
 
                     {/* Description */}
                     <p className="text-base sm:text-lg md:text-xl mb-4 sm:mb-6 px-2 font-semibold">
-                        Discover delicious recipes and share your culinary creations with the world!
+                        Cooksy — your go-to destination to discover mouth-watering recipes from around the world and share your own culinary masterpieces!
                     </p>
 
                     {/* Search Form */}

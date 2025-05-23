@@ -2,8 +2,10 @@ import { Helmet } from "react-helmet-async";
 import { FaPlus } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { Typewriter } from 'react-simple-typewriter';
 import { useContext } from "react";
 import { AuthContext } from "../../Contexts/AuthContext"; // adjust path as needed
+import bannerImage from "../../assets/component-imgs/addRecipe-banner.png"; // update path if needed
 
 const AddRecipe = () => {
     const { user } = useContext(AuthContext);
@@ -72,12 +74,39 @@ const AddRecipe = () => {
                 <meta name="description" content="Add your favorite recipe and share it with the Cooksy community." />
             </Helmet>
 
-            <section className="py-12 px-4 min-h-screen bg-[var(--color-section-bg)]">
-                <div className="max-w-4xl mx-auto bg-[var(--color-section-bg)] p-8 rounded-lg shadow shadow-red-300 border border-[var(--color-secondary)]">
-                    <h2 className="text-3xl sm:text-5xl font-bold md:mb-16 sm:mb-10 mb-8 text-center text-[var(--color-secondary)]">
-                        Add a New Recipe
-                    </h2>
+            {/* ✨ Beautiful Banner ✨ */}
+            <div
+                className="relative h-60 sm:h-80 md:h-[300px] bg-cover bg-center flex items-center justify-center text-white text-center"
+                style={{
+                    backgroundImage: `url(${bannerImage})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                }}
+            >
+                <div className="w-full h-full absolute top-0 left-0 z-0"></div>
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-4 sm:p-10">
+                    <h1 className="text-xl sm:text-3xl md:text-5xl font-extrabold mb-1 sm:mb-2 md:mb-4">
+                        <Typewriter
+                            words={["Share Your Special Recipe", "Turn Ingredients into Magic", "Create Culinary Masterpieces"]}
+                            loop={true}
+                            cursor
+                            cursorStyle="|"
+                            typeSpeed={80}
+                            deleteSpeed={60}
+                            delaySpeed={1500}
+                        />
+                    </h1>
+                    <p className="text-xs sm:text-sm md:text-base text-[#fce53a] font-semibold sm:text-lg max-w-3xl">
+                        Whether it’s your grandma’s secret curry or a midnight snack invention, add your recipe and let the world enjoy your cooking magic. Every flavor has a story — tell yours!
+                    </p>
+                </div>
+            </div>
 
+            {/* 🔥 Form Section */}
+            <section className="py-12 px-4 min-h-screen bg-[var(--color-section-bg)]">
+                <h1 className="max-w-4xl mx-auto py-5 text-2xl sm:text-3xl md:text-4xl text-[var(--color-primary)] font-bold">Let's Add a Recipe! Here🧑‍🍳</h1>
+
+                <div className="max-w-4xl mx-auto bg-[var(--color-section-bg)] p-8 rounded-lg shadow shadow-red-300 border border-[var(--color-secondary)]">
                     <form onSubmit={handleSubmit} className="space-y-6 text-[var(--color-accent)] text-base sm:text-lg">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div>
@@ -92,11 +121,11 @@ const AddRecipe = () => {
                                 <label className="block mb-2 font-medium">Cuisine Type</label>
                                 <select name="cuisine" className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md">
                                     <option value="" className="text-red-500 font-normal">Select one</option>
-                                    <option value="Italian" className="text-red-500 font-normal">Italian</option>
-                                    <option value="Mexican" className="text-red-500 font-normal">Mexican</option>
-                                    <option value="Indian" className="text-red-500 font-normal">Indian</option>
-                                    <option value="Chinese" className="text-red-500 font-normal">Chinese</option>
-                                    <option value="Others" className="text-red-500 font-normal">Others</option>
+                                    <option value="Italian">Italian</option>
+                                    <option value="Mexican">Mexican</option>
+                                    <option value="Indian">Indian</option>
+                                    <option value="Chinese">Chinese</option>
+                                    <option value="Others">Others</option>
                                 </select>
                             </div>
                         </div>
@@ -130,8 +159,8 @@ const AddRecipe = () => {
                             </div>
                         </div>
 
-                        <button type="submit" className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[var(--color-secondary)] text-white font-bold rounded-md hover:bg-red-400 transition">
-                            <FaPlus /> Add Recipe
+                        <button type="submit" className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[var(--color-secondary)] text-white font-bold rounded-md hover:bg-red-400 transition group ">
+                            <FaPlus className="transition-transform duration-500 ease-in-out group-hover:-translate-x-3" />  Add Recipe
                         </button>
                     </form>
                 </div>
