@@ -25,9 +25,10 @@ A user-friendly recipe management app where food lovers can discover, add, and s
 9. react-spinners – Loader spinner component for smooth loading effects.
 10. react-simple-typewriter – Animated typing effect for error pages and headings.
 11. Animate.css – For cool, ready-to-use CSS-based animations.
-12.  React Helmet Async – Managing document head for SEO.
+12. MongoDB (via Express) – Storing and retrieving recipe data.
+13.  React Helmet Async – Managing document head for SEO.
 14. Firebase Authentication – Secure user login system.
-15. MongoDB (via Express) – Storing and retrieving recipe data.
+
 
 
 
