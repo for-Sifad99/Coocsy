@@ -69,6 +69,7 @@ const AddRecipe = () => {
 
     return (
         <>
+        {/* Helmet */}
             <Helmet>
                 <title>Add Recipe - Cooksy</title>
                 <meta name="description" content="Add your favorite recipe and share it with the Cooksy community." />
@@ -120,12 +121,12 @@ const AddRecipe = () => {
                             <div>
                                 <label className="block mb-2 font-medium">Cuisine Type</label>
                                 <select name="cuisine" className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md">
-                                    <option value="" className="text-red-500 font-normal">Select one</option>
-                                    <option value="Italian">Italian</option>
-                                    <option value="Mexican">Mexican</option>
-                                    <option value="Indian">Indian</option>
-                                    <option value="Chinese">Chinese</option>
-                                    <option value="Others">Others</option>
+                                    <option value="" className="text-black font-normal">Select one</option>
+                                    <option value="Italian" className="text-black font-normal">Italian</option>
+                                    <option value="Mexican" className="text-black font-normal">Mexican</option>
+                                    <option value="Indian" className="text-black font-normal">Indian</option>
+                                    <option value="Chinese" className="text-black font-normal">Chinese</option>
+                                    <option value="Others" className="text-black font-normal">Others</option>
                                 </select>
                             </div>
                         </div>

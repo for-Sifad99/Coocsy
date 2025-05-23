@@ -33,6 +33,7 @@ const AllRecipes = () => {
                 <meta name="description" content="Explore all available recipes from chefs and food lovers around the world!" />
             </Helmet>
 
+
             <div className="px-4 sm:px-6 md:px-8 lg:px-16 py-8 md:py-10 lg:py-14 bg-[var(--color-section-bg)]">
                 {/* Section Header */}
                 <div className="text-center mb-5 sm:mb-7 md:mb-10 lg:mb-14 space-y-3 sm:space-y-4">
@@ -52,7 +53,7 @@ const AllRecipes = () => {
                         {recipes.map(({ _id, image, title, likes = 0, cuisineType, prepTime, category }, i) => (
                             <div
                                 key={_id}
-                                className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-[360px] flex flex-col animate__animated animate__fadeInUp"
+                                className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-[360px] flex flex-col group animate__animated animate__fadeInUp"
                                 style={{ animationDelay: `${i * 0.2}s`, animationFillMode: 'both' }}
                             >
                                 {/* Image Section */}
@@ -60,7 +61,7 @@ const AllRecipes = () => {
                                     <img
                                         src={image}
                                         alt={title}
-                                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                     />
                                     <button className="absolute top-2 left-2 bg-white text-[var(--color-secondary)] text-xs px-3 py-1 rounded-full shadow hover:scale-105 transition-transform">
                                         <FaHeart className="inline-block mr-1" /> {likes}

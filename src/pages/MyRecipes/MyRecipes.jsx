@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 import { Typewriter } from "react-simple-typewriter";
 import { GoArrowRight } from 'react-icons/go';
+import { Helmet } from 'react-helmet-async';
 
 
 const Loader = () => (
@@ -112,25 +113,34 @@ const MyRecipes = () => {
     };
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-6">
-            <div className='mb-8'>
-                <h2 className="text-3xl md:text-4xl text[var(--color-primary)] font-bold text-center mb-2 md:mb-4">
-                    🍲 My Recipe Box!
-                </h2>
-                <p className="text-xs sm:text-sm text-center text-[var(--color-accent)] max-w-2xl mx-auto mb-4">
-                    Keep all your favorite recipes in one place! Add your own culinary creations or save dishes you love to try later. Let’s get cooking! 🍳✨
-                </p>
-            </div>
+        <>
+            {/* Helmet */}
+            <Helmet>
+                <title>My Recipes - Cooksy</title>
+                <meta
+                    content="View and manage your saved and added recipes in one place with Cooksy!"
+                />
+            </Helmet>
 
-            {error && <p className="text-red-500 mb-4">{error}</p>}
+            <div className="max-w-6xl mx-auto px-4 py-10">
+                <div className='mb-8'>
+                    <h2 className="text-3xl md:text-4xl text[var(--color-primary)] font-bold text-center mb-2 md:mb-4">
+                        🍲 My Recipe Box!
+                    </h2>
+                    <p className="text-xs sm:text-sm text-center text-[var(--color-accent)] max-w-2xl mx-auto">
+                        Keep all your favorite recipes in one place! Add your own culinary creations or save dishes you love to try later. Let’s get cooking! 🍳✨
+                    </p>
+                </div>
 
-            {loading ? (
-                <Loader />
-            ) : recipes.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center min-h-[40vh] space-y-4">
-                        <TbMoodEmpty className="text-7xl text-red-400" />
+                {error && <p className="text-red-500 mb-4">{error}</p>}
 
-                        <p className="text-2xl text-red-600 text-center font-bold">
+                {loading ? (
+                    <Loader />
+                ) : recipes.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center min-h-[30vh] space-y-4 py-4">
+                        <TbMoodEmpty className="text-7xl text-[var(--color-secondary)]" />
+
+                        <p className="text-xl sm:text-2xl text-[var(--color-primary)] text-center font-bold">
                             <Typewriter
                                 words={['You have no recipes added yet.']}
                                 loop={false}
@@ -151,219 +161,207 @@ const MyRecipes = () => {
                             </button>
                         </Link>
                     </div>
-            ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {recipes.map(recipe => (
-                        <div
-                            key={recipe._id}
-                            className="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden group relative"
-                        >
-                            {/* ICONS TOP CORNER */}
-                            <div className="flex justify-between px-4 pt-4 absolute z-10 w-full">
-                                <div className="flex items-center gap-1 bg-white/80 px-2 py-1 rounded-full text-sm shadow">
-                                    <FaUtensils className="text-orange-500" />
-                                    <span>{recipe.cuisineType}</span>
-                                </div>
-                                <div className="flex items-center gap-1 bg-white/80 px-2 py-1 rounded-full text-sm shadow cursor-default">
-                                    <FaHeart className="text-red-500" />
-                                    <span>{recipe.likeCount}</span>
-                                </div>
-                            </div>
-
-                            {/* IMAGE */}
-                            <div className="h-48 overflow-hidden">
-                                <img
-                                    src={recipe.image}
-                                    alt={recipe.title}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                                />
-                            </div>
-
-                            {/* TEXT CONTENT */}
-                            <div className="p-4 space-y-1">
-                                <div className="flex gap-3 text-sm text-gray-500">
-                                    <div className="flex items-center gap-1">
-                                        <FaTags className="text-blue-500" />
-                                        <span>{recipe.categories}</span>
+                ) : (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {recipes.map(recipe => (
+                            <div
+                                key={recipe._id}
+                                className="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden group relative"
+                            >
+                                {/* ICONS TOP CORNER */}
+                                <div className="flex justify-between px-4 pt-4 absolute z-10 w-full">
+                                    <div className="flex items-center gap-1 bg-white/80 text-gray-800 px-2 py-1 rounded-full text-sm shadow">
+                                        <FaUtensils className="text-orange-500" />
+                                        <span>{recipe.cuisineType}</span>
                                     </div>
-                                    <div className="flex items-center gap-1">
-                                        <FaClock className="text-green-500" />
-                                        <span>{recipe.prepTime}h</span>
+                                    <div className="flex items-center gap-1 bg-white/80 text-gray-800 px-2 py-1 rounded-full text-sm shadow cursor-default">
+                                        <FaHeart className="text-red-500" />
+                                        <span>{recipe.likeCount}</span>
                                     </div>
                                 </div>
 
-                                <h3 className="text-xl font-semibold">{recipe.title}</h3>
-                                <p className="text-sm text-gray-700"><strong>Ingredients:</strong> {recipe.ingredients}</p>
-                                <p className="text-sm text-gray-700"><strong>Instructions:</strong> {recipe.instructions}</p>
+                                {/* IMAGE */}
+                                <div className="h-48 overflow-hidden">
+                                    <img
+                                        src={recipe.image}
+                                        alt={recipe.title}
+                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                    />
+                                </div>
 
-                                {/* BUTTONS */}
-                                <div className="flex justify-between gap-2 mt-4">
-                                    <button
-                                        onClick={() => openUpdateModal(recipe)}
-                                        className="w-1/2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm flex items-center justify-center gap-2"
-                                    >
-                                        <FaEdit />
-                                        Update
-                                    </button>
-                                    <button
-                                        onClick={() => handleDelete(recipe._id)}
-                                        className="w-1/2 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm flex items-center justify-center gap-2"
-                                    >
-                                        <FaTrash />
-                                        Delete
-                                    </button>
+                                {/* TEXT CONTENT */}
+                                <div className="p-4 space-y-1">
+                                    <div className="flex gap-4 text-sm text-gray-500">
+                                        <div className="flex items-center gap-1">
+                                            <FaTags className="text-blue-500" />
+                                            <span>{recipe.categories}</span>
+                                        </div>
+                                        <div className="flex items-center gap-1">
+                                            <FaClock className="text-green-500" />
+                                            <span>{recipe.prepTime} min</span>
+                                        </div>
+                                    </div>
+
+                                    <h3 className="text-2xl font-bold text-black">{recipe.title}</h3>
+                                    <p className="text-sm text-gray-700"><strong>Ingredients:</strong> {recipe.ingredients}</p>
+                                    <p className="text-sm text-gray-700"><strong>Instructions:</strong> {recipe.instructions}</p>
+
+                                    {/* BUTTONS */}
+                                    <div className="flex justify-between gap-2 mt-4">
+                                        <button
+                                            onClick={() => openUpdateModal(recipe)}
+                                            className="w-1/2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm flex items-center justify-center gap-2"
+                                        >
+                                            <FaEdit />
+                                            Update
+                                        </button>
+                                        <button
+                                            onClick={() => handleDelete(recipe._id)}
+                                            className="w-1/2 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm flex items-center justify-center gap-2"
+                                        >
+                                            <FaTrash />
+                                            Delete
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
-            )}
+                        ))}
+                    </div>
+                )}
 
-            {/* MODAL */}
-            {isModalOpen && (
-                <div
-                    className="fixed inset-0 flex justify-center items-center z-50 backdrop-blur-sm"
-                    onClick={() => setIsModalOpen(false)}
-                >
-                    <form
-                        onClick={e => e.stopPropagation()}
-                        onSubmit={handleUpdateSubmit}
-                        className="bg-white p-6 rounded-lg max-w-xl shadow-lg space-y-6 max-h-[90vh] overflow-auto"
+                {/* MODAL */}
+                {isModalOpen && (
+                    <div
+                        className="fixed inset-0 flex justify-center items-center z-50 backdrop-blur-sm"
+                        onClick={() => setIsModalOpen(false)}
                     >
-                        {/* TOP: Title and Categories side by side */}
-                        <div className="flex gap-4">
-                            <div className="flex flex-col flex-1">
-                                <label className="text-sm font-medium mb-1">Title</label>
+                        <form
+                            onClick={e => e.stopPropagation()}
+                            onSubmit={handleUpdateSubmit}
+                            className="bg-[var(--color-section-bg)]  p-6 rounded-lg max-w-xl shadow-lg space-y-6 max-h-[90vh] overflow-auto"
+                        >
+                            {/* Image URL */}
+                            <div className="flex flex-col">
+                                <label className="text-[]car(--color-accent)] text-sm font-bold mb-1">Image URL</label>
                                 <input
                                     type="text"
-                                    name="title"
-                                    value={formData.title}
+                                    name="image"
+                                    value={formData.image}
                                     onChange={handleChange}
                                     required
-                                    className="border rounded p-2 w-full"
+                                    className="text-[var(--color-accent)] border border-[var(--color-secondary)]  rounded p-2 w-full"
                                 />
                             </div>
-                            <div className="flex flex-col flex-1">
-                                <label className="text-sm font-medium mb-1">Categories</label>
-                                <input
-                                    type="text"
-                                    name="categories"
-                                    value={formData.categories}
-                                    onChange={handleChange}
-                                    required
-                                    className="border rounded p-2 w-full"
-                                />
-                            </div>
-                        </div>
 
-                        {/* Preparation Time and Cuisine Type side by side */}
-                        <div className="flex gap-4">
-                            <div className="flex flex-col flex-1">
-                                <label className="text-sm font-medium mb-1">Preparation Time (hours)</label>
-                                <input
-                                    type="number"
-                                    name="prepTime"
-                                    value={formData.prepTime}
+                            {/* TOP: Title and Categories side by side */}
+                            <div className="flex gap-4">
+                                <div className="flex flex-col flex-1">
+                                    <label className="text-[]car(--color-accent)] text-sm font-bold mb-1">Title</label>
+                                    <input
+                                        type="text"
+                                        name="title"
+                                        value={formData.title}
+                                        onChange={handleChange}
+                                        required
+                                        className="text-[var(--color-accent)] border border-[var(--color-secondary)] rounded p-2 w-full"
+                                    />
+                                </div>
+                                <div className="flex flex-col flex-1">
+                                    <label className="text-[]car(--color-accent)] text-sm font-bold mb-1">Categories</label>
+                                    <input
+                                        type="text"
+                                        name="categories"
+                                        value={formData.categories}
+                                        onChange={handleChange}
+                                        required
+                                        className="text-[var(--color-accent)] border border-[var(--color-secondary)] rounded p-2 w-full"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Preparation Time and Cuisine Type side by side */}
+                            <div className="flex gap-4">
+                                <div className="flex flex-col flex-1">
+                                    <label className="text-[]car(--color-accent)] text-sm font-bold mb-1">Preparation Time (hours)</label>
+                                    <input
+                                        type="number"
+                                        name="prepTime"
+                                        value={formData.prepTime}
+                                        onChange={handleChange}
+                                        required
+                                        className="text-[var(--color-accent)] border border-[var(--color-secondary)] rounded p-2 w-full"
+                                        min="0"
+                                        step="0.1"
+                                    />
+                                </div>
+                                <div className="flex flex-col flex-1">
+                                    <label className="text-[]car(--color-accent)] text-sm font-bold mb-1">Cuisine Type</label>
+                                    <select
+                                        name="cuisineType"
+                                        value={formData.cuisineType}
+                                        onChange={handleChange}
+                                        required
+                                        className="text-[var(--color-accent)] border border-[var(--color-secondary)] rounded p-2 w-full"
+                                    >
+                                        <option value="" className='text-black'>Select cuisine</option>
+                                        <option value="Italian" className='text-black'>Italian</option>
+                                        <option value="Mexican" className='text-black'>Mexican</option>
+                                        <option value="Indian" className='text-black'>Indian</option>
+                                        <option value="Chinese" className='text-black'>Chinese</option>
+                                        <option value="American" className='text-black'>American</option>
+                                        <option value="French" className='text-black'>French</option>
+                                        {/* Add more as you want */}
+                                    </select>
+                                </div>
+                            </div>
+
+                            {/* Ingredients */}
+                            <div className="flex flex-col">
+                                <label className="text-[]car(--color-accent)] text-sm font-bold mb-1">Ingredients</label>
+                                <textarea
+                                    name="ingredients"
+                                    value={formData.ingredients}
                                     onChange={handleChange}
                                     required
-                                    className="border rounded p-2 w-full"
-                                    min="0"
-                                    step="0.1"
+                                    className="text-[var(--color-accent)] border border-[var(--color-secondary)]  rounded p-2 w-full"
+                                    rows="3"
                                 />
                             </div>
-                            <div className="flex flex-col flex-1">
-                                <label className="text-sm font-medium mb-1">Cuisine Type</label>
-                                <select
-                                    name="cuisineType"
-                                    value={formData.cuisineType}
+
+                            {/* Instructions */}
+                            <div className="flex flex-col">
+                                <label className="text-[]car(--color-accent)] text-sm font-bold mb-1">Instructions</label>
+                                <textarea
+                                    name="instructions"
+                                    value={formData.instructions}
                                     onChange={handleChange}
                                     required
-                                    className="border rounded p-2 w-full"
+                                    className="text-[var(--color-accent)] border border-[var(--color-secondary)]  rounded p-2 w-full"
+                                    rows="4"
+                                />
+                            </div>
+
+                            {/* Buttons */}
+                            <div className="flex justify-end gap-4 mt-4">
+                                <button
+                                    type="button"
+                                    onClick={() => setIsModalOpen(false)}
+                                    className="px-4 py-2 rounded text-black text-white bg-red-500 hover:bg-red-600 transition"
                                 >
-                                    <option value="">Select cuisine</option>
-                                    <option value="Italian">Italian</option>
-                                    <option value="Mexican">Mexican</option>
-                                    <option value="Indian">Indian</option>
-                                    <option value="Chinese">Chinese</option>
-                                    <option value="American">American</option>
-                                    <option value="French">French</option>
-                                    {/* Add more as you want */}
-                                </select>
+                                    Cancel
+                                </button>
+                                <button
+                                    type="submit"
+                                    className="px-4 py-2 rounded bg-green-500 text-white hover:bg-green-600" transition
+                                >
+                                    Save
+                                </button>
                             </div>
-                        </div>
-
-                        {/* Image URL */}
-                        <div className="flex flex-col">
-                            <label className="text-sm font-medium mb-1">Image URL</label>
-                            <input
-                                type="text"
-                                name="image"
-                                value={formData.image}
-                                onChange={handleChange}
-                                required
-                                className="border rounded p-2 w-full"
-                            />
-                        </div>
-
-                        {/* Ingredients */}
-                        <div className="flex flex-col">
-                            <label className="text-sm font-medium mb-1">Ingredients</label>
-                            <textarea
-                                name="ingredients"
-                                value={formData.ingredients}
-                                onChange={handleChange}
-                                required
-                                className="border rounded p-2 w-full"
-                                rows="3"
-                            />
-                        </div>
-
-                        {/* Instructions */}
-                        <div className="flex flex-col">
-                            <label className="text-sm font-medium mb-1">Instructions</label>
-                            <textarea
-                                name="instructions"
-                                value={formData.instructions}
-                                onChange={handleChange}
-                                required
-                                className="border rounded p-2 w-full"
-                                rows="4"
-                            />
-                        </div>
-
-                        {/* Like Count */}
-                        <div className="flex flex-col max-w-xs">
-                            <label className="text-sm font-medium mb-1">Like Count</label>
-                            <input
-                                type="number"
-                                name="likeCount"
-                                value={formData.likeCount}
-                                onChange={handleChange}
-                                min="0"
-                                className="border rounded p-2 w-full"
-                            />
-                        </div>
-
-                        {/* Buttons */}
-                        <div className="flex justify-end gap-4 mt-4">
-                            <button
-                                type="button"
-                                onClick={() => setIsModalOpen(false)}
-                                className="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400"
-                            >
-                                Cancel
-                            </button>
-                            <button
-                                type="submit"
-                                className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
-                            >
-                                Save Changes
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            )}
-        </div>
+                        </form>
+                    </div>
+                )}
+            </div>
+        </>
     );
 };
 

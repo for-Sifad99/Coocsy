@@ -45,16 +45,16 @@ const Header = () => {
 
     // Navbar links active style here
     const navLinkStyle = ({ isActive }) =>
-        `font-semibold px-3 lg:py-2 py-1 rounded-full transition-all duration-200 text-base md:text-xs xl:text-sm
+        `font-semibold px-3 lg:py-2 py-1 rounded-full transition-all duration-200 text-xl sm:text-2xl md:text-xs xl:text-sm
         ${isActive ? "bg-[var(--color-secondary-light)] text-[var(--color-secondary)]" : "text-[var(--color-accent)] hover:bg-[var(--color-secondary-light)] hover:text-[var(--color-secondary)]"}`;
 
     // Navbar register icon active style here
     const activeRegisterStyle = ({ isActive }) =>
-        `lg:text-2xl text-3xl hover:text-[var(--color-secondary)] transition ${isActive ? "text-[var(--color-secondary)]" : "text-[var(--color-primary)]"}`;
+        `lg:text-2xl text-4xl hover:text-[var(--color-secondary)] transition ${isActive ? "text-[var(--color-secondary)]" : "text-[var(--color-primary)]"}`;
 
     // Navbar login icon active style here
     const activeLoginStyle = ({ isActive }) =>
-        `group font-semibold text-black bg-[var(--color-btn-bg)] px-6 py-2 text-sm md:text-base rounded-full hover:bg-[var(--color-secondary)] hover:text-black transition ${isActive ? "bg-[var(--color-secondary)]" : ""}`;
+        `group font-semibold text-black bg-[var(--color-btn-bg)] md:px-6 px-7 py-2 text-lg md:text-base rounded-full hover:bg-[var(--color-secondary)] hover:text-black transition ${isActive ? "bg-[var(--color-secondary)]" : ""}`;
 
     const navLinks = (
         <>
@@ -111,7 +111,7 @@ const Header = () => {
                 </Link>
 
                 {/* Desktop Nav */}
-                <div className="hidden md:flex items-start xl:gap-4 md:gap-2 xl:ml-10 lg:ml-3 md:ml-6 mr-auto">
+                <div className="hidden md:flex items-start xl:gap-4 lg:gap-2 xl:ml-10 lg:ml-3 md:ml-6 mr-auto">
                     {navLinks}
                 </div>
 
