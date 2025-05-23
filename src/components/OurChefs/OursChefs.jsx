@@ -28,7 +28,6 @@ const OurChefs = () => {
                 <p className="text-xs sm:text-sm text-center text-[var(--color-accent)] max-w-2xl mx-auto">
                     Get to know the talented writers and chefs behind our recipes and articles. Explore their stories and favorite dishes! 🌍✨
                 </p>
-
           </div>
 
             <div className="flex justify-center items-center flex-wrap gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10 mt-6 md:mt-12">

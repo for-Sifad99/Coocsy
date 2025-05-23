@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router";
+import { FaHeart, FaUtensils, FaTags, FaClock, FaEdit, FaTrash } from 'react-icons/fa';
+import { TbMoodEmpty } from "react-icons/tb";
+import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
+import { Typewriter } from "react-simple-typewriter";
+import { GoArrowRight } from 'react-icons/go';
+
+
+const Loader = () => (
+    <span className="loading loading-dots loading-md mx-auto flex items-center justify-center"></span>
+);
 
 const MyRecipes = () => {
-    // Replace this with your auth user email dynamically
     const userEmail = "sifayed99@gmail.com";
 
     const [recipes, setRecipes] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    // Modal state
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [currentRecipe, setCurrentRecipe] = useState(null);
 
-    // Form state for update
     const [formData, setFormData] = useState({
         title: '',
         image: '',
@@ -24,7 +33,6 @@ const MyRecipes = () => {
         likeCount: 0,
     });
 
-    // Fetch user recipes on mount
     useEffect(() => {
         setLoading(true);
         fetch(`http://localhost:3000/recipes?email=${encodeURIComponent(userEmail)}`)
@@ -42,23 +50,29 @@ const MyRecipes = () => {
             });
     }, [userEmail]);
 
-    // Delete recipe handler
     const handleDelete = async (id) => {
-        if (!window.confirm('Are you sure you want to delete this recipe?')) return;
+        const result = await Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        });
+
+        if (!result.isConfirmed) return;
 
         try {
-            const res = await fetch(`http://localhost:3000/recipes/${id}`, {
-                method: 'DELETE',
-            });
+            const res = await fetch(`http://localhost:3000/recipes/${id}`, { method: 'DELETE' });
             if (!res.ok) throw new Error('Failed to delete recipe');
-
             setRecipes(recipes.filter(recipe => recipe._id !== id));
+            toast.success('Recipe deleted successfully!');
         } catch (err) {
-            alert('Delete failed: ' + err.message);
+            toast.error('Delete failed: ' + err.message);
         }
     };
 
-    // Open update modal and fill form
     const openUpdateModal = (recipe) => {
         setCurrentRecipe(recipe);
         setFormData({
@@ -74,13 +88,11 @@ const MyRecipes = () => {
         setIsModalOpen(true);
     };
 
-    // Handle form input change
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    // Submit update form
     const handleUpdateSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -90,201 +102,262 @@ const MyRecipes = () => {
                 body: JSON.stringify(formData),
             });
             if (!res.ok) throw new Error('Failed to update recipe');
-
-            // Update recipe in local state
             setRecipes(recipes.map(r => (r._id === currentRecipe._id ? { ...r, ...formData } : r)));
-
             setIsModalOpen(false);
             setCurrentRecipe(null);
+            toast.success('Recipe updated successfully!');
         } catch (err) {
-            alert('Update failed: ' + err.message);
+            toast.error('Update failed: ' + err.message);
         }
     };
 
     return (
-        <div style={{ maxWidth: 900, margin: 'auto', padding: 20 }}>
-            <h1>🍲 My Recipes</h1>
-
-            {loading && <p>Loading your recipes...</p>}
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-
-            {!loading && recipes.length === 0 && <p>You have no recipes added yet.</p>}
-
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 20 }}>
-                {recipes.map(recipe => (
-                    <div
-                        key={recipe._id}
-                        style={{
-                            border: '1px solid #ccc',
-                            borderRadius: 8,
-                            width: 300,
-                            padding: 15,
-                            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                        }}
-                    >
-                        <img
-                            src={recipe.image}
-                            alt={recipe.title}
-                            style={{ width: '100%', height: 180, objectFit: 'cover', borderRadius: 6 }}
-                        />
-                        <h3>{recipe.title}</h3>
-                        <p><strong>Ingredients:</strong> {recipe.ingredients}</p>
-                        <p><strong>Instructions:</strong> {recipe.instructions}</p>
-                        <p><strong>Cuisine Type:</strong> {recipe.cuisineType}</p>
-                        <p><strong>Prep Time:</strong> {recipe.prepTime} hours</p>
-                        <p><strong>Category:</strong> {recipe.categories}</p>
-                        <p><strong>Like Count:</strong> {recipe.likeCount}</p>
-
-                        <button
-                            onClick={() => openUpdateModal(recipe)}
-                            style={{ marginRight: 10, padding: '6px 12px', cursor: 'pointer' }}
-                        >
-                            Update
-                        </button>
-
-                        <button
-                            onClick={() => handleDelete(recipe._id)}
-                            style={{ padding: '6px 12px', cursor: 'pointer', backgroundColor: 'red', color: 'white', border: 'none', borderRadius: 4 }}
-                        >
-                            Delete
-                        </button>
-                    </div>
-                ))}
+        <div className="max-w-6xl mx-auto px-4 py-6">
+            <div className='mb-8'>
+                <h2 className="text-3xl md:text-4xl text[var(--color-primary)] font-bold text-center mb-2 md:mb-4">
+                    🍲 My Recipe Box!
+                </h2>
+                <p className="text-xs sm:text-sm text-center text-[var(--color-accent)] max-w-2xl mx-auto mb-4">
+                    Keep all your favorite recipes in one place! Add your own culinary creations or save dishes you love to try later. Let’s get cooking! 🍳✨
+                </p>
             </div>
 
-            {/* Update Modal */}
+            {error && <p className="text-red-500 mb-4">{error}</p>}
+
+            {loading ? (
+                <Loader />
+            ) : recipes.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center min-h-[40vh] space-y-4">
+                        <TbMoodEmpty className="text-7xl text-red-400" />
+
+                        <p className="text-2xl text-red-600 text-center font-bold">
+                            <Typewriter
+                                words={['You have no recipes added yet.']}
+                                loop={false}
+                                cursor
+                                cursorStyle="_"
+                                typeSpeed={70}
+                                deleteSpeed={50}
+                                delaySpeed={1000}
+                            />
+                        </p>
+
+                        <Link to="/add-recipe">
+                            <button
+                                className="flex gap-2 items-center hover:bg-red-100 transition text-lg sm:text-xl md:text-xl px-6 sm:px-8 md:px-8 py-3 md:py-4 bg-white text-red-500 font-semibold rounded-full group shadow-md"
+                            >
+                                <span>All recipes</span>
+                                <GoArrowRight className="transition-transform duration-300 ease-in-out group-hover:translate-x-2" />
+                            </button>
+                        </Link>
+                    </div>
+            ) : (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {recipes.map(recipe => (
+                        <div
+                            key={recipe._id}
+                            className="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden group relative"
+                        >
+                            {/* ICONS TOP CORNER */}
+                            <div className="flex justify-between px-4 pt-4 absolute z-10 w-full">
+                                <div className="flex items-center gap-1 bg-white/80 px-2 py-1 rounded-full text-sm shadow">
+                                    <FaUtensils className="text-orange-500" />
+                                    <span>{recipe.cuisineType}</span>
+                                </div>
+                                <div className="flex items-center gap-1 bg-white/80 px-2 py-1 rounded-full text-sm shadow cursor-default">
+                                    <FaHeart className="text-red-500" />
+                                    <span>{recipe.likeCount}</span>
+                                </div>
+                            </div>
+
+                            {/* IMAGE */}
+                            <div className="h-48 overflow-hidden">
+                                <img
+                                    src={recipe.image}
+                                    alt={recipe.title}
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                                />
+                            </div>
+
+                            {/* TEXT CONTENT */}
+                            <div className="p-4 space-y-1">
+                                <div className="flex gap-3 text-sm text-gray-500">
+                                    <div className="flex items-center gap-1">
+                                        <FaTags className="text-blue-500" />
+                                        <span>{recipe.categories}</span>
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                        <FaClock className="text-green-500" />
+                                        <span>{recipe.prepTime}h</span>
+                                    </div>
+                                </div>
+
+                                <h3 className="text-xl font-semibold">{recipe.title}</h3>
+                                <p className="text-sm text-gray-700"><strong>Ingredients:</strong> {recipe.ingredients}</p>
+                                <p className="text-sm text-gray-700"><strong>Instructions:</strong> {recipe.instructions}</p>
+
+                                {/* BUTTONS */}
+                                <div className="flex justify-between gap-2 mt-4">
+                                    <button
+                                        onClick={() => openUpdateModal(recipe)}
+                                        className="w-1/2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm flex items-center justify-center gap-2"
+                                    >
+                                        <FaEdit />
+                                        Update
+                                    </button>
+                                    <button
+                                        onClick={() => handleDelete(recipe._id)}
+                                        className="w-1/2 py-1 bg-red-500 text-white rounded hover:bg-red-600 text-sm flex items-center justify-center gap-2"
+                                    >
+                                        <FaTrash />
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
+
+            {/* MODAL */}
             {isModalOpen && (
                 <div
-                    style={{
-                        position: 'fixed',
-                        top: 0, left: 0,
-                        width: '100vw', height: '100vh',
-                        backgroundColor: 'rgba(0,0,0,0.5)',
-                        display: 'flex', justifyContent: 'center', alignItems: 'center',
-                        zIndex: 9999,
-                    }}
-                    onClick={() => setIsModalOpen(false)} // Close modal if click outside form
+                    className="fixed inset-0 flex justify-center items-center z-50 backdrop-blur-sm"
+                    onClick={() => setIsModalOpen(false)}
                 >
                     <form
-                        onClick={e => e.stopPropagation()} // Prevent modal close on form click
+                        onClick={e => e.stopPropagation()}
                         onSubmit={handleUpdateSubmit}
-                        style={{
-                            backgroundColor: 'white',
-                            padding: 30,
-                            borderRadius: 10,
-                            maxWidth: 500,
-                            width: '100%',
-                            boxShadow: '0 2px 10px rgba(0,0,0,0.3)',
-                        }}
+                        className="bg-white p-6 rounded-lg max-w-xl shadow-lg space-y-6 max-h-[90vh] overflow-auto"
                     >
-                        <h2>Update Recipe</h2>
+                        {/* TOP: Title and Categories side by side */}
+                        <div className="flex gap-4">
+                            <div className="flex flex-col flex-1">
+                                <label className="text-sm font-medium mb-1">Title</label>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    value={formData.title}
+                                    onChange={handleChange}
+                                    required
+                                    className="border rounded p-2 w-full"
+                                />
+                            </div>
+                            <div className="flex flex-col flex-1">
+                                <label className="text-sm font-medium mb-1">Categories</label>
+                                <input
+                                    type="text"
+                                    name="categories"
+                                    value={formData.categories}
+                                    onChange={handleChange}
+                                    required
+                                    className="border rounded p-2 w-full"
+                                />
+                            </div>
+                        </div>
 
-                        <label>
-                            Title:
-                            <input
-                                name="title"
-                                value={formData.title}
-                                onChange={handleChange}
-                                required
-                                style={{ width: '100%', padding: 8, marginBottom: 10 }}
-                            />
-                        </label>
+                        {/* Preparation Time and Cuisine Type side by side */}
+                        <div className="flex gap-4">
+                            <div className="flex flex-col flex-1">
+                                <label className="text-sm font-medium mb-1">Preparation Time (hours)</label>
+                                <input
+                                    type="number"
+                                    name="prepTime"
+                                    value={formData.prepTime}
+                                    onChange={handleChange}
+                                    required
+                                    className="border rounded p-2 w-full"
+                                    min="0"
+                                    step="0.1"
+                                />
+                            </div>
+                            <div className="flex flex-col flex-1">
+                                <label className="text-sm font-medium mb-1">Cuisine Type</label>
+                                <select
+                                    name="cuisineType"
+                                    value={formData.cuisineType}
+                                    onChange={handleChange}
+                                    required
+                                    className="border rounded p-2 w-full"
+                                >
+                                    <option value="">Select cuisine</option>
+                                    <option value="Italian">Italian</option>
+                                    <option value="Mexican">Mexican</option>
+                                    <option value="Indian">Indian</option>
+                                    <option value="Chinese">Chinese</option>
+                                    <option value="American">American</option>
+                                    <option value="French">French</option>
+                                    {/* Add more as you want */}
+                                </select>
+                            </div>
+                        </div>
 
-                        <label>
-                            Image URL:
+                        {/* Image URL */}
+                        <div className="flex flex-col">
+                            <label className="text-sm font-medium mb-1">Image URL</label>
                             <input
+                                type="text"
                                 name="image"
                                 value={formData.image}
                                 onChange={handleChange}
                                 required
-                                style={{ width: '100%', padding: 8, marginBottom: 10 }}
+                                className="border rounded p-2 w-full"
                             />
-                        </label>
+                        </div>
 
-                        <label>
-                            Ingredients:
+                        {/* Ingredients */}
+                        <div className="flex flex-col">
+                            <label className="text-sm font-medium mb-1">Ingredients</label>
                             <textarea
                                 name="ingredients"
                                 value={formData.ingredients}
                                 onChange={handleChange}
                                 required
-                                rows={3}
-                                style={{ width: '100%', padding: 8, marginBottom: 10 }}
+                                className="border rounded p-2 w-full"
+                                rows="3"
                             />
-                        </label>
+                        </div>
 
-                        <label>
-                            Instructions:
+                        {/* Instructions */}
+                        <div className="flex flex-col">
+                            <label className="text-sm font-medium mb-1">Instructions</label>
                             <textarea
                                 name="instructions"
                                 value={formData.instructions}
                                 onChange={handleChange}
                                 required
-                                rows={3}
-                                style={{ width: '100%', padding: 8, marginBottom: 10 }}
+                                className="border rounded p-2 w-full"
+                                rows="4"
                             />
-                        </label>
+                        </div>
 
-                        <label>
-                            Cuisine Type:
-                            <input
-                                name="cuisineType"
-                                value={formData.cuisineType}
-                                onChange={handleChange}
-                                required
-                                style={{ width: '100%', padding: 8, marginBottom: 10 }}
-                            />
-                        </label>
-
-                        <label>
-                            Preparation Time (hours):
-                            <input
-                                type="number"
-                                name="prepTime"
-                                value={formData.prepTime}
-                                onChange={handleChange}
-                                required
-                                min="0"
-                                style={{ width: '100%', padding: 8, marginBottom: 10 }}
-                            />
-                        </label>
-
-                        <label>
-                            Category:
-                            <input
-                                name="categories"
-                                value={formData.categories}
-                                onChange={handleChange}
-                                required
-                                style={{ width: '100%', padding: 8, marginBottom: 10 }}
-                            />
-                        </label>
-
-                        <label>
-                            Like Count:
+                        {/* Like Count */}
+                        <div className="flex flex-col max-w-xs">
+                            <label className="text-sm font-medium mb-1">Like Count</label>
                             <input
                                 type="number"
                                 name="likeCount"
                                 value={formData.likeCount}
                                 onChange={handleChange}
                                 min="0"
-                                style={{ width: '100%', padding: 8, marginBottom: 10 }}
+                                className="border rounded p-2 w-full"
                             />
-                        </label>
+                        </div>
 
-                        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 10 }}>
+                        {/* Buttons */}
+                        <div className="flex justify-end gap-4 mt-4">
                             <button
                                 type="button"
                                 onClick={() => setIsModalOpen(false)}
-                                style={{ padding: '8px 16px', cursor: 'pointer' }}
+                                className="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400"
                             >
                                 Cancel
                             </button>
                             <button
                                 type="submit"
-                                style={{ padding: '8px 16px', cursor: 'pointer', backgroundColor: '#4CAF50', color: 'white', border: 'none', borderRadius: 4 }}
+                                className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700"
                             >
-                                Save
+                                Save Changes
                             </button>
                         </div>
                     </form>

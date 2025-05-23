@@ -91,12 +91,12 @@ const AddRecipe = () => {
                             <div>
                                 <label className="block mb-2 font-medium">Cuisine Type</label>
                                 <select name="cuisine" className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md">
-                                    <option value="" className="text-red-500 font-extrabold">Select one</option>
-                                    <option value="Italian" className="text-red-500 font-semibold">Italian</option>
-                                    <option value="Mexican" className="text-red-500 font-semibold">Mexican</option>
-                                    <option value="Indian" className="text-red-500 font-semibold">Indian</option>
-                                    <option value="Chinese" className="text-red-500 font-semibold">Chinese</option>
-                                    <option value="Others" className="text-red-500 font-semibold">Others</option>
+                                    <option value="" className="text-red-500 font-normal">Select one</option>
+                                    <option value="Italian" className="text-red-500 font-normal">Italian</option>
+                                    <option value="Mexican" className="text-red-500 font-normal">Mexican</option>
+                                    <option value="Indian" className="text-red-500 font-normal">Indian</option>
+                                    <option value="Chinese" className="text-red-500 font-normal">Chinese</option>
+                                    <option value="Others" className="text-red-500 font-normal">Others</option>
                                 </select>
                             </div>
                         </div>
