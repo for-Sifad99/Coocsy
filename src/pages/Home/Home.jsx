@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Banner from '../../components/Banner/Banner';
 import TopRecipes from '../../components/TopRecipes/TopRecipes';
 import Inspiration from '../../components/Inspiration/Inspiration';
+import OurChefs from '../../components/OurChefs/OursChefs';
 
 
 const Home = () => {
@@ -27,6 +28,11 @@ const Home = () => {
             {/* Inspiration Section */}
             <section>
                 <Inspiration />
+            </section>
+
+            {/* Inspiration Section */}
+            <section>
+                <OurChefs />
             </section>
 
 

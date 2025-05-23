@@ -21,7 +21,7 @@ const categories = [
 
 const Inspiration = () => {
     return (
-        <section className="py-10 md:py-16 my-20 md:my-30 bg-[var(--color-section-bg)]">
+        <section className="py-10 md:my-16 bg-[var(--color-section-bg)]">
             <div className="max-w-6xl mx-auto px-4">
 
                 {/* Title and Description */}
