@@ -2,8 +2,11 @@ import { Helmet } from "react-helmet-async";
 import { FaPlus } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { AuthContext } from "../../Contexts/AuthContext"; // adjust path as needed
 
 const AddRecipe = () => {
+    const { user } = useContext(AuthContext);
     const categories = ["Breakfast", "Lunch", "Dinner", "Dessert", "Vegan", "Snacks"];
 
     const handleSubmit = (e) => {
@@ -16,10 +19,9 @@ const AddRecipe = () => {
         const ingredients = form.ingredients.value.trim();
         const instructions = form.instructions.value.trim();
         const prepTime = form.preparationTime.value.trim();
-        const categoriesValue = form.categories.value;
+        const category = form.categories.value;
 
-        // Validate fields
-        if (!image || !title || !cuisineType || !ingredients || !instructions || !prepTime || !categoriesValue) {
+        if (!image || !title || !cuisineType || !ingredients || !instructions || !prepTime || !category) {
             toast.warning("Please fill out all fields!");
             return;
         }
@@ -31,34 +33,40 @@ const AddRecipe = () => {
             ingredients,
             instructions,
             prepTime,
-            categories: categoriesValue,
+            categories: category,
+            likeCount: 0,
+            userName: user?.displayName || "Anonymous",
+            userEmail: user?.email || "unknown"
         };
 
-        fetch('http://localhost:3000/addRecipes', {
-            method: 'POST',
+        fetch("http://localhost:3000/addRecipes", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify(newRecipe)
+            body: JSON.stringify(newRecipe),
         })
-            .then(res => res.json())
-            .then(data => {
+            .then((res) => res.json())
+            .then((data) => {
                 if (data.insertedId) {
                     Swal.fire({
                         title: "Recipe Added Successfully!",
                         icon: "success",
-                        draggable: true,
+                        confirmButtonColor: "#d33",
                     });
                     form.reset();
                 } else {
                     toast.error("Failed to add recipe.");
                 }
+            })
+            .catch((err) => {
+                toast.error("Something went wrong!");
+                console.error(err);
             });
     };
 
     return (
         <>
-            {/* Helmet */}
             <Helmet>
                 <title>Add Recipe - Cooksy</title>
                 <meta name="description" content="Add your favorite recipe and share it with the Cooksy community." />
@@ -71,75 +79,42 @@ const AddRecipe = () => {
                     </h2>
 
                     <form onSubmit={handleSubmit} className="space-y-6 text-[var(--color-accent)] text-base sm:text-lg">
-                        {/* Top 3 Fields Side by Side */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div>
                                 <label className="block mb-2 font-medium">Image URL</label>
-                                <input
-                                    type="text"
-                                    name="image"
-                                    placeholder="Paste your image URL"
-                                    className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md"
-                                />
+                                <input type="text" name="image" placeholder="Paste your image URL" className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md" />
                             </div>
-
                             <div>
                                 <label className="block mb-2 font-medium">Recipe Title</label>
-                                <input
-                                    type="text"
-                                    name="title"
-                                    placeholder="Enter recipe title"
-                                    className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md"
-                                />
+                                <input type="text" name="title" placeholder="Enter recipe title" className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md" />
                             </div>
-
                             <div>
                                 <label className="block mb-2 font-medium">Cuisine Type</label>
-                                <select
-                                    name="cuisine"
-                                    className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md"
-                                >
-                                    <option value="" className="text-red-500 fond-semibold">Select one</option>
-                                    <option value="Italian" className="text-red-500 fond-semibold">Italian</option>
-                                    <option value="Mexican" className="text-red-500 fond-semibold">Mexican</option>
-                                    <option value="Indian" className="text-red-500 fond-semibold">Indian</option>
-                                    <option value="Chinese" className="text-red-500 fond-semibold">Chinese</option>
-                                    <option value="Others" className="text-red-500 fond-semibold">Others</option>
+                                <select name="cuisine" className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md">
+                                    <option value="">Select one</option>
+                                    <option value="Italian">Italian</option>
+                                    <option value="Mexican">Mexican</option>
+                                    <option value="Indian">Indian</option>
+                                    <option value="Chinese">Chinese</option>
+                                    <option value="Others">Others</option>
                                 </select>
                             </div>
                         </div>
 
-                        {/* Ingredients */}
                         <div>
                             <label className="block mb-2 font-medium">Ingredients</label>
-                            <textarea
-                                name="ingredients"
-                                rows="3"
-                                placeholder="List ingredients separated by commas"
-                                className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md"
-                            ></textarea>
+                            <textarea name="ingredients" rows="3" placeholder="List ingredients separated by commas" className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md"></textarea>
                         </div>
 
-                        {/* Instructions */}
                         <div>
                             <label className="block mb-2 font-medium">Instructions</label>
-                            <textarea
-                                name="instructions"
-                                rows="4"
-                                placeholder="How to cook it?"
-                                className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md"
-                            ></textarea>
+                            <textarea name="instructions" rows="4" placeholder="How to cook it?" className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md"></textarea>
                         </div>
 
-                        {/* Bottom 2 Fields Side by Side */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block mb-2 font-medium">Preparation Time (in minutes)</label>
-                                <input
-                                    type="number"
-                                    name="preparationTime"
-                                    className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md"
-                                />
+                                <input type="number" name="preparationTime" className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md" />
                             </div>
 
                             <div>
@@ -147,12 +122,7 @@ const AddRecipe = () => {
                                 <div className="flex flex-wrap gap-4">
                                     {categories.map((category) => (
                                         <label key={category} className="flex items-center gap-2 text-sm sm:text-base">
-                                            <input
-                                                type="radio"
-                                                name="categories"
-                                                value={category}
-                                                className="accent-[var(--color-secondary)]"
-                                            />
+                                            <input type="radio" name="categories" value={category} className="accent-[var(--color-secondary)]" />
                                             {category}
                                         </label>
                                     ))}
@@ -160,11 +130,7 @@ const AddRecipe = () => {
                             </div>
                         </div>
 
-                        {/* Submit Button */}
-                        <button
-                            type="submit"
-                            className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[var(--color-secondary)] text-white font-bold rounded-md hover:bg-red-400 transition"
-                        >
+                        <button type="submit" className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[var(--color-secondary)] text-white font-bold rounded-md hover:bg-red-400 transition">
                             <FaPlus /> Add Recipe
                         </button>
                     </form>
