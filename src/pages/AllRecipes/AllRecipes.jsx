@@ -3,6 +3,7 @@ import { FaHeart, FaUtensils, FaClock } from 'react-icons/fa';
 import Loader from '../../components/Loader/Loader';
 import 'animate.css';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router';
 
 const AllRecipes = () => {
     const [recipes, setRecipes] = useState([]);
@@ -88,10 +89,11 @@ const AllRecipes = () => {
                                         </h3>
                                         <p className="text-red-500 text-xs capitalize">{category}</p>
                                     </div>
-
+                                    <Link to={`/recipe-details/${_id}`}>
                                     <button className="bg-red-500 hover:bg-[var(--color-secondary)]  text-white text-sm font-medium py-1.5 px-3 rounded-full w-full transition-colors">
                                         View Details
                                     </button>
+                                    </Link>
                                 </div>
                             </div>
                         ))}

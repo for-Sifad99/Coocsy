@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../Contexts/AuthContext'
 import { Link } from "react-router";
 import { FaHeart, FaUtensils, FaTags, FaClock, FaEdit, FaTrash } from 'react-icons/fa';
 import { TbMoodEmpty } from "react-icons/tb";
@@ -14,7 +15,8 @@ const Loader = () => (
 );
 
 const MyRecipes = () => {
-    const userEmail = "sifayed99@gmail.com";
+    const user = useContext(AuthContext)
+    const userEmail = user.user.email;
 
     const [recipes, setRecipes] = useState([]);
     const [loading, setLoading] = useState(false);
