@@ -7,7 +7,10 @@ import { Link } from 'react-router';
 
 const AllRecipes = () => {
     const [recipes, setRecipes] = useState([]);
+    const [filteredRecipes, setFilteredRecipes] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [cuisineFilter, setCuisineFilter] = useState('');
 
     useEffect(() => {
         const fetchAllRecipes = async () => {
@@ -16,6 +19,7 @@ const AllRecipes = () => {
                 if (!res.ok) throw new Error('Failed to fetch recipes');
                 const data = await res.json();
                 setRecipes(data);
+                setFilteredRecipes(data);
             } catch (err) {
                 console.error("Fetch error:", err);
             } finally {
@@ -26,14 +30,34 @@ const AllRecipes = () => {
         fetchAllRecipes();
     }, []);
 
+    // Filter recipes when searchTerm or cuisineFilter changes
+    useEffect(() => {
+        let filtered = [...recipes];
+
+        if (cuisineFilter) {
+            filtered = filtered.filter(recipe =>
+                recipe.cuisineType.toLowerCase() === cuisineFilter.toLowerCase()
+            );
+        }
+
+        if (searchTerm.trim() !== '') {
+            filtered = filtered.filter(recipe =>
+                recipe.cuisineType.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
+
+        setFilteredRecipes(filtered);
+    }, [searchTerm, cuisineFilter, recipes]);
+
     return (
         <>
-        {/* Helmet */}
             <Helmet>
                 <title>All Recipes - Cooksy</title>
-                <meta name="description" content="Explore all available recipes from chefs and food lovers around the world!" />
+                <meta
+                    name="description"
+                    content="Explore all available recipes from chefs and food lovers around the world!"
+                />
             </Helmet>
-
 
             <div className="px-4 sm:px-6 md:px-8 lg:px-16 py-8 md:py-10 lg:py-14 bg-[var(--color-section-bg)]">
                 {/* Section Header */}
@@ -42,16 +66,66 @@ const AllRecipes = () => {
                         🍽️ Savor & Serve!
                     </h2>
                     <p className="text-sm sm:text-base md:text-lg text-[var(--color-accent)] max-w-md sm:max-w-xl md:max-w-2xl mx-auto">
-                        A delicious collection of <span className="text-[var(--color-secondary)] font-semibold">{recipes.length}</span> hand-picked recipes for every food lover. Explore and enjoy a variety of tastes from around the world! 🌍✨
+                        A delicious collection of{' '}
+                        <span className="text-[var(--color-secondary)] font-semibold">
+                            {filteredRecipes.length}
+                        </span>{' '}
+                        hand-picked recipes for every food lover. Explore and enjoy a variety
+                        of tastes from around the world! 🌍✨
                     </p>
                 </div>
+
+                {/* Search Form */}
+                <form className="mt-3 sm:mt-5" onSubmit={e => e.preventDefault()}>
+                    <div className="flex flex-col md:flex-row gap-3 items-stretch max-w-3xl mx-auto">
+                        {/* Dropdown */}
+                        <label className="flex items-center bg-[#e9e4e4] border-2 border-[#e9e4e4] rounded px-3 py-2 text-sm sm:text-base cursor-pointer select-none min-w-[148px] w-full md:w-auto">
+                            <FaUtensils size={20} className="text-red-600 mr-2 min-w-[20px]" />
+                            <select
+                                className="bg-[#e9e4e4] text-black outline-none cursor-pointer w-full"
+                                value={cuisineFilter}
+                                onChange={e => setCuisineFilter(e.target.value)}
+                            >
+                                <option value="">All</option>
+                                <option value="Italian">Italian</option>
+                                <option value="Chinese">Chinese</option>
+                                <option value="Indian">Indian</option>
+                                <option value="Mexican">Mexican</option>
+                                {/* Add more options as needed */}
+                            </select>
+                        </label>
+
+                        {/* Search Input */}
+                        <label className="flex items-center bg-[#e9e4e4] border-2 border-[#e9e4e4] rounded px-2 py-2 w-full">
+                            <input
+                                type="text"
+                                placeholder="Find recipes by Cuisine"
+                                className="w-full text-sm sm:text-base p-2 focus:outline-none text-black bg-[#e9e4e4] placeholder:text-xs sm:placeholder:text-sm"
+                                value={searchTerm}
+                                onChange={e => setSearchTerm(e.target.value)}
+                            />
+                        </label>
+
+                        {/* Search Button */}
+                        <div className="w-full md:w-auto">
+                            <button
+                                type="button"
+                                className="w-full md:w-[110px] lg:w-[140px] bg-red-500 text-white hover:bg-red-600 text-xs sm:text-sm px-4 py-3 md:py-5 rounded-lg transition duration-500 cursor-pointer"
+                                onClick={() => { }}
+                            >
+                                Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
 
                 {/* Loader */}
                 {loading ? (
                     <Loader />
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {recipes.map(({ _id, image, title, likes = 0, cuisineType, prepTime}, i) => (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8">
+                        {filteredRecipes.map(({ _id, image, title, likes = 0, cuisineType, prepTime }, i) => (
                             <div
                                 key={_id}
                                 className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-[360px] flex flex-col group animate__animated animate__fadeInUp"
@@ -83,16 +157,17 @@ const AllRecipes = () => {
                                     </div>
 
                                     <div>
-                                        <h3 className="text-2xl text-black
-                                    font-bold hover:underline cursor-pointer line-clamp-1">
+                                        <h3
+                                            className="text-2xl text-black font-bold hover:underline cursor-pointer line-clamp-1"
+                                        >
                                             {title}
                                         </h3>
                                     </div>
 
                                     <Link to={`/recipe-details/${_id}`}>
-                                    <button className="bg-red-500 hover:bg-[var(--color-secondary)]  text-white text-sm font-medium py-1.5 px-3 rounded-full w-full transition-colors">
-                                        View Details
-                                    </button>
+                                        <button className="bg-red-500 hover:bg-[var(--color-secondary)] text-white text-sm font-medium py-1.5 px-3 rounded-full w-full transition-colors">
+                                            View Details
+                                        </button>
                                     </Link>
                                 </div>
                             </div>
