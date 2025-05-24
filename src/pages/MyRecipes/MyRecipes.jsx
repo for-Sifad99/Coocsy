@@ -33,7 +33,7 @@ const MyRecipes = () => {
         cuisineType: '',
         prepTime: '',
         categories: '',
-        likeCount: 0,
+        likes: 0,
     });
 
     useEffect(() => {
@@ -86,7 +86,7 @@ const MyRecipes = () => {
             cuisineType: recipe.cuisineType || '',
             prepTime: recipe.prepTime || '',
             categories: recipe.categories || '',
-            likeCount: recipe.likeCount || 0,
+            likeCount: recipe.likes || 0,
         });
         setIsModalOpen(true);
     };
@@ -178,7 +178,7 @@ const MyRecipes = () => {
                                     </div>
                                     <div className="flex items-center gap-1 bg-white/80 text-gray-800 px-2 py-1 rounded-full text-sm shadow cursor-default">
                                         <FaHeart className="text-red-500" />
-                                        <span>{recipe.likeCount}</span>
+                                        <span>{recipe.likes}</span>
                                     </div>
                                 </div>
 
@@ -354,7 +354,7 @@ const MyRecipes = () => {
                                 </button>
                                 <button
                                     type="submit"
-                                    className="px-4 py-2 rounded bg-green-500 text-white hover:bg-green-600" transition
+                                    className="px-4 py-2 rounded bg-green-500 text-white hover:bg-green-600 transition"
                                 >
                                     Save
                                 </button>

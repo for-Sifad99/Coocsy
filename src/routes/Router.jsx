@@ -10,6 +10,7 @@ import MyRecipes from '../pages/MyRecipes/MyRecipes'
 import Register from '../pages/Register/Register'
 import Login from '../pages/Login/Login'
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
+import Loader from '../components/Loader/Loader';
 
 
 
@@ -31,7 +32,8 @@ const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:3000/recipes/${params.id}`),
                 element: <PrivetRouter>
                     <RecipeDetails />
-                </PrivetRouter>
+                </PrivetRouter>,
+                hydrateFallbackElement: <Loader />,
             },
             {
                 path: '/add-recipe',

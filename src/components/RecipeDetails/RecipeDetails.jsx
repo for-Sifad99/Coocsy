@@ -1,11 +1,18 @@
 import { Link, useLoaderData } from 'react-router';
+import { AuthContext } from '../../Contexts/AuthContext';
 import { FaClock, FaHeart, FaRegBookmark, FaUtensils } from 'react-icons/fa';
-import { FaBowlFood } from "react-icons/fa6";
-import { GoArrowRight } from "react-icons/go";
+import { FaBowlFood } from 'react-icons/fa6';
+import { GoArrowRight } from 'react-icons/go';
 import { Helmet } from 'react-helmet-async';
+import { useState, useContext } from 'react';
+import { toast } from 'react-toastify';
+import { Typewriter } from 'react-simple-typewriter';
 
 const RecipeDetails = () => {
+    const user = useContext(AuthContext);
+    const AuthorEmail = user.user.email;
     const recipe = useLoaderData();
+
     const {
         image,
         title,
@@ -14,42 +21,83 @@ const RecipeDetails = () => {
         instructions,
         prepTime,
         categories,
-        likes
+        likes,
+        userEmail,
     } = recipe;
+
+    const [likeCount, setLikeCount] = useState(likes);
+
+    const handleLike = async () => {
+        const updatedCount = likeCount + 1;
+        setLikeCount(updatedCount);
+
+        try {
+            const res = await fetch(`http://localhost:3000/api/recipes/${recipe._id}/like`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ likes: updatedCount }),
+            });
+
+            const data = await res.json();
+            if (!res.ok) {
+                console.error('Failed to update like count:', data.message);
+                setLikeCount(likeCount);
+            }
+        } catch (err) {
+            console.error('Error:', err);
+            setLikeCount(likeCount);
+        }
+    };
+
+    const handleClickLike = () => {
+        if (AuthorEmail !== userEmail) {
+            handleLike();
+        } else {
+            toast.info("You can't like your own recipe!");
+        }
+    };
 
     return (
         <>
-            {/* Helmet */}
             <Helmet>
                 <title>{title ? `${title} RECIPE - Cooksy` : "Recipe Details - Cooksy"}</title>
-                <meta
-                    name="description"
-                    content="View detailed instructions, ingredients, and more for this amazing recipe on Cooksy!"
-                />
+                <meta name="description" content="View detailed instructions, ingredients, and more for this amazing recipe on Cooksy!" />
             </Helmet>
 
-            <div className="max-w-5xl mx-auto px-8 py-20 md:grid md:grid-cols-2 flex flex-col justify-center item-center gap-10 items-start">
-                {/* Left Side Image */}
+            <div className="flex flex-col items-center justify-center mx-auto text-center py-6 px-4 sm:py-10">
+                <h1 className="text-[var(--color-primary)] text-xl sm:text-3xl font-bold mb-1 sm:mb-3">
+                    🍽️ Hot Recipe!
+                </h1>
+                <h2 className="max-w-5xl text-xs sm:text-base md:text-lg text-[var(--color-accent)]">
+                    <Typewriter
+                        words={[`${likeCount} people interested in this recipe. Users can like a recipe multiple times. But the user can’t like his own added recipes.`]}
+                        loop
+                        cursor
+                        cursorStyle="|"
+                        typeSpeed={80}
+                        deleteSpeed={60}
+                        delaySpeed={1500}
+                    />
+                </h2>
+            </div>
+
+            <div className="max-w-5xl mx-auto px-4 sm:px-8 py-4 sm:pt-0 md:pt-10 pb-20 md:grid md:grid-cols-2 gap-10 flex flex-col items-center">
+                {/* Image */}
                 <img
-                    src={image}// replace this with your actual image path
+                    src={image}
                     alt={recipe.title}
-                    className="rounded-xl shadow-lg w-full md:mx-0 mx-auto object-cover"
+                    className="rounded-xl shadow-lg w-full object-cover"
                 />
 
-                {/* Right Side Details */}
-                <div className="space-y-4 w-full flex flex-col justify-center items-start md:mx-0 mx-auto">
-                    <p className="text-red-500 font-bold uppercase text-5xl">{title}</p>
+                {/* Details */}
+                <div className="space-y-4 w-full">
+                    <p className="text-[var(--color-secondary)] font-bold uppercase text-2xl sm:text-4xl">{title}</p>
 
-                    {/* Author + Icons */}
-                    <div className="w-full flex flex-wrap sm:items-center gap-4 items-start justify-between py-2">
-                        {/* Author Info */}
+                    <div className="md:w-full flex flex-wrap items-center gap-4 justify-between py-2">
                         <div className="flex items-center gap-3">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 64 64"
-                                width="48"
-                                height="48"
-                            >
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40">
                                 <circle cx="32" cy="32" r="30" fill="#FFEDD5" stroke="#FDBA74" strokeWidth="2" />
                                 <path d="M24 16c-1-6 6-9 10-6 4-3 11 0 10 6 3 1 4 5 3 7H21c-1-2 0-6 3-7z" fill="#F3F4F6" stroke="#D1D5DB" strokeWidth="1" />
                                 <circle cx="32" cy="36" r="12" fill="#FCD34D" />
@@ -59,14 +107,16 @@ const RecipeDetails = () => {
                                 <path d="M24 48c0 4 16 4 16 0v-4H24v4z" fill="#F87171" stroke="#B91C1C" strokeWidth="1" />
                             </svg>
                             <div>
-                                <p className="font-semibold text-gray-700">Smart Chef</p>
-                                <p className="text-sm text-gray-500">Recipe Author</p>
+                                <p className="font-semibold text-[var(--color-primary)] text-sm sm:text-base">Smart Chef</p>
+                                <p className="text-xs text-[var(--color-accent)]">Recipe Author</p>
                             </div>
                         </div>
 
-                        {/* Icons */}
                         <div className="flex items-center gap-3">
-                            <button className="p-2 rounded-full bg-pink-100 text-pink-500 hover:bg-pink-200 transition">
+                            <button
+                                onClick={handleClickLike}
+                                className="p-2 rounded-full bg-pink-100 text-pink-500 hover:bg-pink-200 transition"
+                            >
                                 <FaHeart className="text-xl" />
                             </button>
                             <button className="p-2 rounded-full bg-blue-100 text-blue-500 hover:bg-blue-200 transition">
@@ -75,12 +125,10 @@ const RecipeDetails = () => {
                         </div>
                     </div>
 
-                    {/* Divider */}
-                    <hr className="w-full border-t border-gray-200 mb-8" />
+                    <hr className="w-full border-t border-gray-200 mb-6" />
 
-
-                    {/* Info row */}
-                    <div className="flex gap-4 text-base text-gray-600 flex-wrap">
+                    {/* Info Row */}
+                    <div className="flex gap-3 sm:gap-6 text-xs sm:text-base text-[var(--color-accent)] flex-wrap">
                         <div className="flex items-center gap-2">
                             <FaClock /> <span>{prepTime} min</span>
                         </div>
@@ -92,38 +140,36 @@ const RecipeDetails = () => {
                         </div>
                     </div>
 
-                    {/* Instruction Info */}
-                    <div className='mb-6'>
-                        <h1 className="text-xl font-semibold mb-2">instructions</h1>
-                        <h2 className="text-xl md:text-2xl font-bold leading-tight text-gray-400">
-                            {instructions.map(i => <li>{i}</li>)}
-                        </h2>
+                    {/* Instructions */}
+                    <div>
+                        <h1 className="text-lg sm:text-xl font-semibold mb-2">Instructions</h1>
+                        <ul className="text-[var(--color-base-200)] list-disc pl-4 space-y-1 text-sm sm:text-base">
+                            {instructions.map((i, index) => <li key={index}>{i}</li>)}
+                        </ul>
                     </div>
-
 
                     {/* Ingredients */}
                     <div>
-                        <h2 className="text-xl font-semibold">Ingredients <span className="text-sm text-gray-500">(1 Person)</span></h2>
-                        <div className="text-gray-700 text-sm">
-                            {ingredients.map(i => <li>{i}</li>)}
-                        </div>
+                        <h2 className="text-lg sm:text-xl font-semibold mb-2">Ingredients <span className="text-sm text-gray-500">(1 Person)</span></h2>
+                        <ul className="text-[var(--color-base-200)]0 text-sm sm:text-base list-disc pl-4 space-y-1">
+                            {ingredients.map((i, index) => <li key={index}>{i}</li>)}
+                        </ul>
                     </div>
 
-
-                    {/* Button */}
-                    <div className="mt-4 flex gap-5">
+                    {/* Buttons */}
+                    <div className="mt-4 flex gap-4 flex-wrap">
                         <Link
                             to='/all-recipes'
-                            className="flex gap-2 items-center hover:bg-red-100 transition text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-8 py-2 md:py-3 bg-white text-red-500 font-semibold rounded-full group shadow-md"
+                            className="flex items-center gap-2 hover:bg-red-100 text-sm sm:text-base px-6 py-2 bg-white text-red-500 font-semibold rounded-full shadow-md transition group"
                         >
                             <span>See All Recipes</span>
-                            <GoArrowRight className="transition-transform duration-300 ease-in-out group-hover:translate-x-2" />
+                            <GoArrowRight className="group-hover:translate-x-2 transition-transform" />
                         </Link>
                         <button
-                            className="flex gap-2 items-center hover:bg-red-100 transition text-sm sm:text-base md:text-lg px-6 sm:px-8 md:px-8 py-2 md:py-3 bg-white text-red-500 font-semibold rounded-full group shadow-md"
+                            className="flex items-center gap-2 hover:bg-red-100 text-sm sm:text-base px-6 py-2 bg-white text-red-500 font-semibold rounded-full shadow-md transition group"
                         >
                             <span>Try It</span>
-                            <GoArrowRight className="transition-transform duration-300 ease-in-out group-hover:translate-x-2" />
+                            <GoArrowRight className="group-hover:translate-x-2 transition-transform" />
                         </button>
                     </div>
                 </div>
