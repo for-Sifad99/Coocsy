@@ -38,7 +38,7 @@ const MyRecipes = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetch(`http://localhost:3000/recipes?email=${encodeURIComponent(userEmail)}`)
+        fetch(`https://recipe-book-server-kappa.vercel.app/recipes?email=${encodeURIComponent(userEmail)}`)
             .then(res => {
                 if (!res.ok) throw new Error('Failed to fetch recipes');
                 return res.json();
@@ -67,7 +67,7 @@ const MyRecipes = () => {
         if (!result.isConfirmed) return;
 
         try {
-            const res = await fetch(`http://localhost:3000/recipes/${id}`, { method: 'DELETE' });
+            const res = await fetch(`https://recipe-book-server-kappa.vercel.app/recipes/${id}`, { method: 'DELETE' });
             if (!res.ok) throw new Error('Failed to delete recipe');
             setRecipes(recipes.filter(recipe => recipe._id !== id));
             toast.success('Recipe deleted successfully!');
@@ -99,7 +99,7 @@ const MyRecipes = () => {
     const handleUpdateSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch(`http://localhost:3000/recipes/${currentRecipe._id}`, {
+            const res = await fetch(`https://recipe-book-server-kappa.vercel.app/recipes/${currentRecipe._id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),

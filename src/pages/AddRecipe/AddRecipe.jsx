@@ -70,7 +70,7 @@ const AddRecipe = () => {
             userEmail: user?.email || "unknown"
         };
 
-        fetch("http://localhost:3000/addRecipes", {
+        fetch("https://recipe-book-server-kappa.vercel.app/addRecipes", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

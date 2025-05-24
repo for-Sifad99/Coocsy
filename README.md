@@ -1,16 +1,19 @@
 🧑‍🍳 Cooksy
 
------
+_____
+_____
 
-A user-friendly recipe management app where food lovers can discover, add, and share recipes with ease.
+Cooksy is a user-friendly recipe management app where food lovers can easily discover a wide variety of recipes, add their own creations, and share them with others. Whether you're a home cook or just love exploring new dishes, Cooksy makes it fun and simple to manage all your favorite meals in one place.
 
-----
+_____
+_____
 
 🌐 Live Site ---->
-👉 Cooksy Live : https://cooksycoo.netlify.app/
+👉 Cooksy Live : (https://cooksycoo.netlify.app/)
 
 
--------
+_____
+_____
 
 
 🛠️ Technologies & Tools Used
@@ -33,8 +36,8 @@ Cooksy has been crafted with modern tools and technologies to give users the bes
 💬 Tooltips & Reveal Effects
 🌐 Toastify (CSS)
 
-______
-------
+_____
+_____
 
 
 🌟 🌟  Key Features
@@ -54,8 +57,8 @@ ______
 13. 💬 Beautiful Alerts: All notifications use toasts/sweet alerts — no default alerts.
 14. 📦 Cool Libraries: Integrated with Lottie, React Tooltip, and Awesome Reveal animations.
 
---------
---------
+_____
+_____
 
 
 📦 Installation Instructions
@@ -68,5 +71,5 @@ cd cooksy
 3. Install dependencies
 npm install
 
--------
-------
+_____
+_____

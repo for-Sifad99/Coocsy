@@ -8,7 +8,7 @@ const TopRecipes = () => {
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:3000/allRecipes")
+        fetch("https://recipe-book-server-kappa.vercel.app/allRecipes")
             .then(res => res.json())
             .then(data => {
                 // Sort by likes descending and take top 6
@@ -54,10 +54,10 @@ const TopRecipes = () => {
                                     {recipe.title}
                                 </h3>
                                 <Link to={`/recipe-details/${recipe._id}`}>
-                                <button className="mt-2 bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded w-full transition-colors">
-                                    View Details
-                                </button>
-                                </Link> 
+                                    <button className="mt-2 bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded w-full transition-colors">
+                                        View Details
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     ))}

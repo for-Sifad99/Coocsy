@@ -15,7 +15,7 @@ const AllRecipes = () => {
     useEffect(() => {
         const fetchAllRecipes = async () => {
             try {
-                const res = await fetch('http://localhost:3000/allRecipes');
+                const res = await fetch('https://recipe-book-server-kappa.vercel.app/allRecipes');
                 if (!res.ok) throw new Error('Failed to fetch recipes');
                 const data = await res.json();
                 setRecipes(data);

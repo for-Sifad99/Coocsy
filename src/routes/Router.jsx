@@ -29,7 +29,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/recipe-details/:id',
-                loader: ({ params }) => fetch(`http://localhost:3000/recipes/${params.id}`),
+                loader: ({ params }) => fetch(`https://recipe-book-server-kappa.vercel.app/recipes/${params.id}`),
                 element: <PrivetRouter>
                     <RecipeDetails />
                 </PrivetRouter>,

@@ -32,7 +32,7 @@ const RecipeDetails = () => {
         setLikeCount(updatedCount);
 
         try {
-            const res = await fetch(`http://localhost:3000/api/recipes/${recipe._id}/like`, {
+            const res = await fetch(`https://recipe-book-server-kappa.vercel.app/api/recipes/${recipe._id}/like`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
