@@ -13,26 +13,50 @@ A user-friendly recipe management app where food lovers can discover, add, and s
 -------
 
 
-🛠️ Tech Stack & Dependencies -----
-1. This project uses modern tools and technologies.
-2. React (with Vite) – Fast development and build setup.
-3. Tailwind CSS – Utility-first CSS framework.
-4. DaisyUI – Ready-made styled components.
-5. React Icons – For beautiful icon integration.
-6. React Toastify – Elegant toast notifications.
-7. SweetAlert2 – Stylish alert messages.
-8. Lottie React – For engaging animations.
-9. react-spinners – Loader spinner component for smooth loading effects.
-10. react-simple-typewriter – Animated typing effect for error pages and headings.
-11. Animate.css – For cool, ready-to-use CSS-based animations.
-12. MongoDB (via Express) – Storing and retrieving recipe data.
-13.  React Helmet Async – Managing document head for SEO.
-14. Firebase Authentication – Secure user login system.
+🛠️ Technologies & Tools Used
+Cooksy has been crafted with modern tools and technologies to give users the best possible experience! Here's a breakdown of what powers the app:
+⚛️ React 19
+🧠 React Helmet Async
+🔁 React Router v7
+🌈 Tailwind CSS v4
+🎨 Animate.css
+🔥 Firebase v11
+🛡️ Environment Variables
+🔒 Google Sign-In
+📦 Vite + Tailwind Plugin
+🍭 React Toastify v11
+🍬 SweetAlert2
+✨ Lottie + Dotlottie
+⌨️ React Simple Typewriter
+🔄 React Spinners
+🎨 React Icons
+💬 Tooltips & Reveal Effects
+🌐 Toastify (CSS)
 
-
-
-
+______
 ------
+
+
+🌟 🌟  Key Features
+
+1. 🍽️ Explore Recipes: Discover a variety of delicious recipes shared by other users.
+2. ✨ Top Recipes Section: Shows the 6 most liked recipes on the homepage.
+3. 🔐 User Authentication: Secure login and registration with Google Sign-In support.
+4. ➕ Add Recipes: Logged-in users can add new recipes with all necessary details.
+5. ❤️ Like System: Users can like others' recipes, but not their own!
+6. 📝 My Recipes Panel: View, update, and delete your own submitted recipes.
+7. 🔍 Filter Recipes: Filter all recipes by cuisine type (Italian, Indian, etc.).
+8. 🌞🌚 Dark/Light Mode: Toggle between light and dark themes for better experience.
+9. 🧭 Smooth Navigation: Fully responsive and SPA-based routes without reload issues.
+10. ❌ Custom 404 Page: Fun food-themed 404 page for invalid routes. 
+11. ⚙️ Secure Config: Firebase and MongoDB credentials are hidden using environment    variables.
+12. 🎨 Unique UI Design: Crafted with a fresh, modern look — no lorem ipsum used!
+13. 💬 Beautiful Alerts: All notifications use toasts/sweet alerts — no default alerts.
+14. 📦 Cool Libraries: Integrated with Lottie, React Tooltip, and Awesome Reveal animations.
+
+--------
+--------
+
 
 📦 Installation Instructions
 1. Clone the repository
@@ -44,18 +68,5 @@ cd cooksy
 3. Install dependencies
 npm install
 
+-------
 ------
-
-1. 🌟 Key Features
-2. 🍽️ Add, Edit & Manage Recipes – Create and update your personal recipes
-3. 🔥 Top Recipes Section – Highlights recipes with the most likes
-4. 💖 Like & Wishlist – Like your favorite recipes and save to wishlist
-5. 🔐 Authentication – Register/login with email or Google
-6. 🕶️ Dark & Light Mode – Toggle between themes for better UX
-7. 🧭 Responsive Design – Mobile, tablet, and desktop friendly
-8. 🍔 Filter Recipes by Cuisine – Easily find what you’re craving
-9. 🚫 404 Page – Beautifully themed not found page
-10. 🎨 Unique UI Design – Custom interface built from scratch
-
---------
---------
