@@ -1,15 +1,46 @@
 import { Helmet } from "react-helmet-async";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { Typewriter } from 'react-simple-typewriter';
-import { useContext } from "react";
-import { AuthContext } from "../../Contexts/AuthContext"; // adjust path as needed
-import bannerImage from "../../assets/component-imgs/addRecipe-banner.png"; // update path if needed
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Contexts/AuthContext";
+import bannerImage from "../../assets/component-imgs/addRecipe-banner.png";
 
 const AddRecipe = () => {
     const { user } = useContext(AuthContext);
     const categories = ["Breakfast", "Lunch", "Dinner", "Dessert", "Vegan", "Snacks"];
+
+    const [ingredients, setIngredients] = useState([]);
+    const [instructions, setInstructions] = useState([]);
+    const [ingredientInput, setIngredientInput] = useState("");
+    const [instructionInput, setInstructionInput] = useState("");
+
+    const addIngredient = () => {
+        if (ingredientInput.trim()) {
+            setIngredients([...ingredients, ingredientInput.trim()]);
+            setIngredientInput("");
+        }
+    };
+
+    const removeIngredient = (index) => {
+        const newList = [...ingredients];
+        newList.splice(index, 1);
+        setIngredients(newList);
+    };
+
+    const addInstruction = () => {
+        if (instructionInput.trim()) {
+            setInstructions([...instructions, instructionInput.trim()]);
+            setInstructionInput("");
+        }
+    };
+
+    const removeInstruction = (index) => {
+        const newList = [...instructions];
+        newList.splice(index, 1);
+        setInstructions(newList);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,13 +49,11 @@ const AddRecipe = () => {
         const image = form.image.value.trim();
         const title = form.title.value.trim();
         const cuisineType = form.cuisine.value;
-        const ingredients = form.ingredients.value.trim();
-        const instructions = form.instructions.value.trim();
         const prepTime = form.preparationTime.value.trim();
         const category = form.categories.value;
 
-        if (!image || !title || !cuisineType || !ingredients || !instructions || !prepTime || !category) {
-            toast.warning("Please fill out all fields!");
+        if (!image || !title || !cuisineType || ingredients.length === 0 || instructions.length === 0 || !prepTime || !category) {
+            toast.warning("Please fill out all fields properly!");
             return;
         }
 
@@ -57,6 +86,8 @@ const AddRecipe = () => {
                         confirmButtonColor: "#d33",
                     });
                     form.reset();
+                    setIngredients([]);
+                    setInstructions([]);
                 } else {
                     toast.error("Failed to add recipe.");
                 }
@@ -69,13 +100,11 @@ const AddRecipe = () => {
 
     return (
         <>
-        {/* Helmet */}
             <Helmet>
                 <title>Add Recipe - Cooksy</title>
                 <meta name="description" content="Add your favorite recipe and share it with the Cooksy community." />
             </Helmet>
 
-            {/* ✨ Beautiful Banner ✨ */}
             <div
                 className="relative h-60 sm:h-80 md:h-[300px] bg-cover bg-center flex items-center justify-center text-white text-center"
                 style={{
@@ -84,12 +113,11 @@ const AddRecipe = () => {
                     backgroundPosition: "center",
                 }}
             >
-                <div className="w-full h-full absolute top-0 left-0 z-0"></div>
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-4 sm:p-10">
                     <h1 className="text-xl sm:text-3xl md:text-5xl font-extrabold mb-1 sm:mb-2 md:mb-4">
                         <Typewriter
                             words={["Share Your Special Recipe", "Turn Ingredients into Magic", "Create Culinary Masterpieces"]}
-                            loop={true}
+                            loop
                             cursor
                             cursorStyle="|"
                             typeSpeed={80}
@@ -103,7 +131,6 @@ const AddRecipe = () => {
                 </div>
             </div>
 
-            {/* 🔥 Form Section */}
             <section className="py-12 px-4 min-h-screen bg-[var(--color-section-bg)]">
                 <h1 className="max-w-4xl mx-auto py-5 text-2xl sm:text-3xl md:text-4xl text-[var(--color-primary)] font-bold">Let's Add a Recipe! Here🧑‍🍳</h1>
 
@@ -121,24 +148,68 @@ const AddRecipe = () => {
                             <div>
                                 <label className="block mb-2 font-medium">Cuisine Type</label>
                                 <select name="cuisine" className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md">
-                                    <option value="" className="text-black font-normal">Select one</option>
-                                    <option value="Italian" className="text-black font-normal">Italian</option>
-                                    <option value="Mexican" className="text-black font-normal">Mexican</option>
-                                    <option value="Indian" className="text-black font-normal">Indian</option>
-                                    <option value="Chinese" className="text-black font-normal">Chinese</option>
-                                    <option value="Others" className="text-black font-normal">Others</option>
+                                    <option value="">Select one</option>
+                                    <option value="Italian">Italian</option>
+                                    <option value="Mexican">Mexican</option>
+                                    <option value="Indian">Indian</option>
+                                    <option value="Chinese">Chinese</option>
+                                    <option value="Others">Others</option>
                                 </select>
                             </div>
                         </div>
 
+                        {/* Ingredients */}
                         <div>
                             <label className="block mb-2 font-medium">Ingredients</label>
-                            <textarea name="ingredients" rows="3" placeholder="List ingredients separated by commas" className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md"></textarea>
+                            <div className="flex gap-2 mb-2">
+                                <input
+                                    type="text"
+                                    value={ingredientInput}
+                                    onChange={(e) => setIngredientInput(e.target.value)}
+                                    placeholder="Type ingredient and click add"
+                                    className="flex-grow px-4 py-2 border-2 border-[var(--color-secondary)] rounded-md"
+                                />
+                                <button type="button" onClick={addIngredient} className="bg-[var(--color-secondary)] text-white px-3 py-2 rounded-md hover:bg-red-400">
+                                    <FaPlus />
+                                </button>
+                            </div>
+                            <ul className="list-disc pl-5">
+                                {ingredients.map((item, index) => (
+                                    <li key={index} className="flex justify-between items-center gap-2">
+                                        {item}
+                                        <button type="button" onClick={() => removeIngredient(index)} className="text-red-500 hover:text-red-700">
+                                            <FaTrash />
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
 
+                        {/* Instructions */}
                         <div>
                             <label className="block mb-2 font-medium">Instructions</label>
-                            <textarea name="instructions" rows="4" placeholder="How to cook it?" className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md"></textarea>
+                            <div className="flex gap-2 mb-2">
+                                <input
+                                    type="text"
+                                    value={instructionInput}
+                                    onChange={(e) => setInstructionInput(e.target.value)}
+                                    placeholder="Type instruction and click add"
+                                    className="flex-grow px-4 py-2 border-2 border-[var(--color-secondary)] rounded-md"
+                                />
+                                <button type="button" onClick={addInstruction} className="bg-[var(--color-secondary)] text-white px-3 py-2 rounded-md hover:bg-red-400">
+                                    <FaPlus />
+                                </button>
+                            </div>
+                            <ul className="list-decimal pl-5">
+                                {instructions.map((item, index) => (
+                                    <li key={index} className="flex justify-between items-center gap-2">
+                                        {item}
+                                        <button type="button" onClick={() => removeInstruction(index)} className="text-red-500 hover:text-red-700">
+                                            <FaTrash />
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -160,7 +231,7 @@ const AddRecipe = () => {
                             </div>
                         </div>
 
-                        <button type="submit" className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[var(--color-secondary)] text-white font-bold rounded-md hover:bg-red-400 transition group ">
+                        <button type="submit" className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-[var(--color-secondary)] text-white font-bold rounded-md hover:bg-red-400 transition group">
                             <FaPlus className="transition-transform duration-500 ease-in-out group-hover:-translate-x-3" />  Add Recipe
                         </button>
                     </form>
