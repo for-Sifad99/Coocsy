@@ -62,7 +62,7 @@ const RecipeDetails = () => {
     return (
         <>
             <Helmet>
-                <title>{title ? `${title} RECIPE - Cooksy` : "Recipe Details - Cooksy"}</title>
+                <title>{title ? `${title} Recipe - Cooksy` : "Recipe Details - Cooksy"}</title>
                 <meta name="description" content="View detailed instructions, ingredients, and more for this amazing recipe on Cooksy!" />
             </Helmet>
 
@@ -144,7 +144,7 @@ const RecipeDetails = () => {
                     <div>
                         <h1 className="text-lg sm:text-xl font-semibold mb-2">Instructions</h1>
                         <ul className="text-[var(--color-base-200)] list-disc pl-4 space-y-1 text-sm sm:text-base">
-                            {instructions.map((i, index) => <li key={index}>{i}</li>)}
+                            {instructions}
                         </ul>
                     </div>
 

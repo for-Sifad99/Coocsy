@@ -65,7 +65,7 @@ const AddRecipe = () => {
             instructions,
             prepTime,
             categories: category,
-            likeCount: 0,
+            likes: 0,
             userName: user?.displayName || "Anonymous",
             userEmail: user?.email || "unknown"
         };

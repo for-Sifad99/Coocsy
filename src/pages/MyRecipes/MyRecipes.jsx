@@ -205,8 +205,8 @@ const MyRecipes = () => {
                                     </div>
 
                                     <h3 className="text-2xl font-bold text-black">{recipe.title}</h3>
-                                    <p className="text-sm text-gray-700"><strong>Ingredients:</strong> {recipe.ingredients}</p>
-                                    <p className="text-sm text-gray-700"><strong>Instructions:</strong> {recipe.instructions}</p>
+                                    <p className="text-sm text-gray-700"><strong>Ingredients:</strong> {recipe.ingredients.join(', ')}</p>
+                                    <p className="text-sm text-gray-700"><strong>Instructions:</strong> {recipe.instructions.join(', ')}</p>
 
                                     {/* BUTTONS */}
                                     <div className="flex justify-between gap-2 mt-4">
