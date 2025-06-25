@@ -16,7 +16,7 @@ const Loader = () => {
     if (!loading) return null; // no children, just stop rendering loader after 3s
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-base-100">
+        <div className="flex justify-center items-center min-h-screen">
             <HashLoader color="#e92d28" size={80} />
         </div>
     );

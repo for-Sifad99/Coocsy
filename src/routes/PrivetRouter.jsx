@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../Contexts/AuthContext'; // ✅ named import
-import { Navigate, useLocation } from 'react-router'; // should be 'react-router-dom', not 'react-router'
+import { AuthContext } from '../Contexts/AuthContext'; 
+import { Navigate, useLocation } from 'react-router'; 
 import Loader from '../components/Loader/Loader';
 
 const PrivetRouter = ({ children }) => {
