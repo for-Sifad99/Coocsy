@@ -45,7 +45,7 @@ const Header = () => {
 
     // Navbar links active style here
     const navLinkStyle = ({ isActive }) =>
-        `font-semibold px-3 lg:py-2 py-1 rounded-full transition-all duration-200 text-xl sm:text-2xl md:text-xs xl:text-sm
+        `font-semibold px-4 lg:py-2 py-1 rounded-full transition-all duration-200
         ${isActive ? "bg-[var(--color-secondary-light)] text-[var(--color-secondary)]" : "text-[var(--color-accent)] hover:bg-[var(--color-secondary-light)] hover:text-[var(--color-secondary)]"}`;
 
     // Navbar register icon active style here
@@ -59,59 +59,37 @@ const Header = () => {
     const navLinks = (
         <>
             <NavLink to="/" className={navLinkStyle}>
-                {({ isActive }) => (
-                    <span className="flex items-center gap-1">
-                        Home
-                        <span className="hidden lg:inline">
-                            {isActive ? <FaChevronDown /> : <FaChevronUp />}
-                        </span>
-                    </span>
-                )}
+                Home
             </NavLink>
+            {user && <NavLink to="/dash/dashboard" className={navLinkStyle}>
+                Dashboard
+            </NavLink>}
             <NavLink to="/all-recipes" className={navLinkStyle}>
-                {({ isActive }) => (
-                    <span className="flex items-center gap-1">
-                        All Recipes
-                        <span className="hidden lg:inline">
-                            {isActive ? <FaChevronDown /> : <FaChevronUp />}
-                        </span>
-                    </span>
-                )}
+                All Recipes
             </NavLink>
-            <NavLink to="/add-recipe" className={navLinkStyle}>
-                {({ isActive }) => (
-                    <span className="flex items-center gap-1">
-                        Add Recipe
-                        <span className="hidden lg:inline">
-                            {isActive ? <FaChevronDown /> : <FaChevronUp />}
-                        </span>
-                    </span>
-                )}
-            </NavLink>
-            <NavLink to="/my-recipes" className={navLinkStyle}>
-                {({ isActive }) => (
-                    <span className="flex items-center gap-1">
-                        My Recipes
-                        <span className="hidden lg:inline">
-                            {isActive ? <FaChevronDown /> : <FaChevronUp />}
-                        </span>
-                    </span>
-                )}
+            {user && <NavLink to="/add-recipe" className={navLinkStyle}>
+                Add Recipe
+            </NavLink>}
+            {user && <NavLink to="/my-recipes" className={navLinkStyle}>
+                My Recipes
+            </NavLink>}
+            <NavLink to="/blogs" className={navLinkStyle}>
+                Blogs
             </NavLink>
         </>
     );
 
     return (
-        <nav className="px-4 py-3 md:px-10 lg:px-24 lg:py-5">
+        <nav className="px-4 py-3 md:px-10 xl:px-24 lg:py-5">
             <div className="flex items-center">
                 {/* Logo */}
-                <Link to="/" className="text-4xl font-bold text-[var(--color-primary)] flex items-center gap-2">
+                <Link to="/" className="sm:text-4xl text-3xl font-bold text-[var(--color-primary)] flex items-center sm:gap-2">
                     <FaUtensils className="text-[var(--color-secondary)]" />
-                    <strong><span className='-rotate-16 inline-block text-5xl'>ｃ</span><span className="text-[var(--color-secondary)]">oo</span>ksy</strong>
+                    <strong><span className='-rotate-16 inline-block sm:text-5xl text-4xl'>ｃ</span><span className="text-[var(--color-secondary)]">oo</span>ksy</strong>
                 </Link>
 
                 {/* Desktop Nav */}
-                <div className="hidden md:flex items-start xl:gap-4 lg:gap-2 xl:ml-10 lg:ml-3 md:ml-6 mr-auto">
+                <div className="hidden lg:flex items-start text-xl sm:text-2xl md:text-xs xl:text-sm lg:gap-2 xl:ml-10 md:ml-8 mr-auto">
                     {navLinks}
                 </div>
 
@@ -213,14 +191,14 @@ const Header = () => {
 
             {/* Mobile Menu */}
             <div
-                className={`fixed top-0 right-0 h-screen w-full max-full bg-[var(--color-bg)] z-50 transform transition-transform duration-300
+                className={`fixed top-0 right-0 h-screen max-w-[300px] w-full max-full bg-[var(--color-bg)] z-50 transform transition-transform duration-300
                 ${isOpen ? "translate-x-0" : "translate-x-full"}`}
             >
                 <div className="px-6 py-4 h-full flex flex-col justify-between">
                     <div>
                         <div className="flex justify-between items-center mb-6">
-                            <Link to='/' className="text-3xl font-bold text-[var(--color-primary)] flex items-center gap-2">
-                                <FaUtensils className="text-[var(--color-secondary)]"/>
+                            <Link to='/' className="text-2xl font-bold text-[var(--color-primary)] flex items-center gap-2">
+                                <FaUtensils className="text-[var(--color-secondary)]" />
                                 <strong><span className='-rotate-16 inline-block text-4xl'>ｃ</span><span className="text-[var(--color-secondary)]">oo</span>ksy</strong>
                             </Link>
 
@@ -256,21 +234,21 @@ const Header = () => {
                             </div>
                         </div>
 
-                        <div className="flex flex-col justify-center mt-20 items-center gap-4 text-center">
+                        <div className="flex flex-col mt-8 gap-2">
                             {navLinks}
                         </div>
                     </div>
 
                     {user?.email ?
-                        '' : <div className="flex flex-col items-center gap-4 mb-auto mt-4">
+                        '' : <div className="w-fit flex flex-col gap-4 mb-auto mt-3 ml-2">
                             <NavLink to="/register" className={activeRegisterStyle}>
-                                <FaUserPlus />
+                                <FaUserPlus size={30}/>
                             </NavLink>
                             <NavLink
                                 to="/login"
                                 className={activeLoginStyle}
                             >
-                                <span className="flex items-center gap-1">
+                                <span className="text-base flex items-center gap-1">
                                     Login
                                     <strong className="transition-transform duration-300 group-hover:translate-x-1">
                                         <IoMdLogIn />
