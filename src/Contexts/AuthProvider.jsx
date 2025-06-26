@@ -6,6 +6,26 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [data, setData] = useState('');
+
+    //? Fetch All Recipes Data:
+    useEffect(() => {
+        const fetchAllRecipes = async () => {
+            try {
+                const res = await fetch('https://recipe-book-server-kappa.vercel.app/allRecipes');
+                if (!res.ok) throw new Error('Failed to fetch recipes');
+                const result = await res.json();
+                setData(result);
+
+            } catch (err) {
+                console.error("Fetch error:", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchAllRecipes();
+    }, []);
 
     //? Create User:
     const createUser = (email, password) => {
@@ -37,6 +57,7 @@ const AuthProvider = ({ children }) => {
     };
 
     const authData = {
+        data,
         user,
         loading,
         setUser,

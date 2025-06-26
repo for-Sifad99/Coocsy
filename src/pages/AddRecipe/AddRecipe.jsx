@@ -125,7 +125,7 @@ const AddRecipe = () => {
                             delaySpeed={1500}
                         />
                     </h1>
-                    <p className="text-xs sm:text-sm md:text-base text-[#fce53a] font-semibold sm:text-lg max-w-3xl">
+                    <p className="text-xs sm:text-sm md:text-base text-[#fce53a] font-semibold max-w-3xl">
                         Whether it’s your grandma’s secret curry or a midnight snack invention, add your recipe and let the world enjoy your cooking magic. Every flavor has a story — tell yours!
                     </p>
                 </div>

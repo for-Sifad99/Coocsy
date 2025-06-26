@@ -1,34 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { FaHeart, FaUtensils, FaClock } from 'react-icons/fa';
-import Loader from '../../components/Loader/Loader';
-import 'animate.css';
+import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { FaHeart, FaUtensils, FaClock } from 'react-icons/fa';
+import 'animate.css';
+import { AuthContext } from '../../Contexts/AuthContext';
 import { Link } from 'react-router';
 
+
 const AllRecipes = () => {
+    const { data } = useContext(AuthContext);
     const [recipes, setRecipes] = useState([]);
     const [filteredRecipes, setFilteredRecipes] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
     const [cuisineFilter, setCuisineFilter] = useState('');
 
+    // Set recipes data
     useEffect(() => {
-        const fetchAllRecipes = async () => {
-            try {
-                const res = await fetch('https://recipe-book-server-kappa.vercel.app/allRecipes');
-                if (!res.ok) throw new Error('Failed to fetch recipes');
-                const data = await res.json();
-                setRecipes(data);
-                setFilteredRecipes(data);
-            } catch (err) {
-                console.error("Fetch error:", err);
-            } finally {
-                setLoading(false);
-            }
+        if (data?.length) {
+            setRecipes(data);
+            setFilteredRecipes(data);
         };
-
-        fetchAllRecipes();
-    }, []);
+    }, [data]);
 
     // Filter recipes when searchTerm or cuisineFilter changes
     useEffect(() => {
@@ -119,11 +110,6 @@ const AllRecipes = () => {
                     </div>
                 </form>
 
-
-                {/* Loader */}
-                {loading ? (
-                    <Loader />
-                ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8">
                         {filteredRecipes.map(({ _id, image, title, likes = 0, cuisineType, prepTime }, i) => (
                             <div
@@ -173,7 +159,6 @@ const AllRecipes = () => {
                             </div>
                         ))}
                     </div>
-                )}
             </div>
         </>
     );
