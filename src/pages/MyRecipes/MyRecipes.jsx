@@ -126,8 +126,8 @@ const MyRecipes = () => {
 
             <div className="max-w-6xl mx-auto px-4 py-10">
                 <div className='mb-8'>
-                    <h2 className="text-3xl md:text-4xl text[var(--color-primary)] font-bold text-center mb-2 md:mb-4">
-                        🍲 My Recipe Box!
+                    <h2 className="text-3xl md:text-4xl text-[var(--color-primary)] font-bold text-center mb-2 md:mb-4">
+                        🍲 My Recipe Box
                     </h2>
                     <p className="text-xs sm:text-sm text-center text-[var(--color-accent)] max-w-2xl mx-auto">
                         Keep all your favorite recipes in one place! Add your own culinary creations or save dishes you love to try later. Let’s get cooking! 🍳✨

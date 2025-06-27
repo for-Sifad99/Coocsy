@@ -86,8 +86,8 @@ const Register = () => {
                 <meta name="description" content="Join Cooksy today and start your cooking journey with ease!" />
             </Helmet>
 
-            <section className="bg-[var(--color-section-bg)] py-8 md:py-14">
-                <div className="relative max-w-xl sm:mx-auto mx-6 p-8 rounded-lg shadow-xl shadow-[var(--color-accent)] border border-[var(--color-base-200)] bg-[var(--color-section-bg)]">
+            <section className="py-8 md:py-14">
+                <div className="relative max-w-xl sm:mx-auto mx-6 p-8 rounded-lg drop-shadow-xl shadow-[var(--color-accent)] border border-[var(--color-base-200)]">
 
                     {success && (
                         <div

@@ -108,8 +108,8 @@ const Login = () => {
                 <meta name="description" content="Login to your Cooksy account to explore, save, and manage recipes." />
             </Helmet>
             
-            <section className="bg-[var(--color-section-bg)] py-8 md:py-14">
-                <div className="relative max-w-xl sm:mx-auto mx-6 p-8 rounded-lg shadow-xl shadow-[var(--color-accent)] border border-[var(--color-base-200)] bg-[var(--color-section-bg)]">
+            <section className="py-8 md:py-14">
+                <div className="relative max-w-xl sm:mx-auto mx-6 p-8 rounded-lg drop-shadow-xl shadow-[var(--color-accent)] border border-[var(--color-base-200)]">
 
                     {success && (
                         <div

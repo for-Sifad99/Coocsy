@@ -66,9 +66,9 @@ const RecipeDetails = () => {
                 <meta name="description" content="View detailed instructions, ingredients, and more for this amazing recipe on Cooksy!" />
             </Helmet>
 
-            <div className="flex flex-col items-center justify-center mx-auto text-center py-6 px-4 sm:py-10">
+            <div className="flex flex-col items-center justify-center mx-auto text-center pt-8 sm:pt-20 px-4">
                 <h1 className="text-[var(--color-primary)] text-xl sm:text-3xl font-bold mb-1 sm:mb-3">
-                    🍽️ Hot Recipe!
+                    🍽️ Hot Recipe
                 </h1>
                 <h2 className="max-w-5xl text-xs sm:text-base md:text-lg text-[var(--color-accent)]">
                     <Typewriter
@@ -83,7 +83,7 @@ const RecipeDetails = () => {
                 </h2>
             </div>
 
-            <div className="max-w-5xl mx-auto px-4 sm:px-8 py-4 sm:pt-0 md:pt-10 pb-20 md:grid md:grid-cols-2 gap-10 flex flex-col items-center">
+            <div className="max-w-5xl mx-auto px-4 pt-4 sm:pt-8 md:pt-14 sm:px-8 pb-8 sm:pb-20 md:grid md:grid-cols-2 sm:gap-10 gap-6 flex flex-col items-center">
                 {/* Image */}
                 <img
                     src={image}
@@ -92,7 +92,7 @@ const RecipeDetails = () => {
                 />
 
                 {/* Details */}
-                <div className="space-y-4 w-full">
+                <div className="sm:space-y-4 w-full">
                     <p className="text-[var(--color-secondary)] font-bold uppercase text-2xl sm:text-4xl">{title}</p>
 
                     <div className="md:w-full flex flex-wrap items-center gap-4 justify-between py-2">
@@ -112,17 +112,12 @@ const RecipeDetails = () => {
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-3">
                             <button
                                 onClick={handleClickLike}
-                                className="p-2 rounded-full bg-pink-100 text-pink-500 hover:bg-pink-200 transition"
+                                className="p-2 rounded-full bg-pink-200 text-pink-600 hover:bg-pink-300 transition"
                             >
                                 <FaHeart className="text-xl" />
                             </button>
-                            <button className="p-2 rounded-full bg-blue-100 text-blue-500 hover:bg-blue-200 transition">
-                                <FaRegBookmark className="text-xl" />
-                            </button>
-                        </div>
                     </div>
 
                     <hr className="w-full border-t border-gray-200 mb-6" />
@@ -157,21 +152,13 @@ const RecipeDetails = () => {
                     </div>
 
                     {/* Buttons */}
-                    <div className="mt-4 flex gap-4 flex-wrap">
                         <Link
                             to='/all-recipes'
-                            className="flex items-center gap-2 hover:bg-red-100 text-sm sm:text-base px-6 py-2 bg-white text-red-500 font-semibold rounded-full shadow-md transition group"
+                            className="flex items-center w-fit gap-2 hover:bg-red-100 text-sm sm:text-base px-6 py-2 sm:mt-4 mt-3 bg-white text-red-500 font-semibold rounded-full shadow-md transition group"
                         >
                             <span>See All Recipes</span>
                             <GoArrowRight className="group-hover:translate-x-2 transition-transform" />
                         </Link>
-                        <button
-                            className="flex items-center gap-2 hover:bg-red-100 text-sm sm:text-base px-6 py-2 bg-white text-red-500 font-semibold rounded-full shadow-md transition group"
-                        >
-                            <span>Try It</span>
-                            <GoArrowRight className="group-hover:translate-x-2 transition-transform" />
-                        </button>
-                    </div>
                 </div>
             </div>
         </>

@@ -10,7 +10,7 @@ const Root = () => {
             <header className='bg-[var(--color-bg)] text-[var(--color-primary)]'>
                 <Header />
             </header>
-            <main className='bg-[var(--color-section-bg)] text-[var(--color-primary)]'>
+            <main className='min-h-screen bg-[var(--color-section-bg)] overflow-auto text-[var(--color-primary)]'>
                 <Outlet />
             </main>
             <footer className='bg-[var(--color-bg)] text-[var(--color-primary)]'>

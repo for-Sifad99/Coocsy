@@ -1,4 +1,3 @@
-// src/components/OurChefs.jsx
 import React from 'react';
 import chef1 from '../../assets/component-imgs/chef-1.jpg';
 import chef2 from '../../assets/component-imgs/chef-2.jpg';
@@ -20,17 +19,17 @@ const chefs = [
 
 const OurChefs = () => {
     return (
-        <div className="text-center py-10 md:py-20 px-4 bg-[var(--color-section-bg)]">
-          <div className='mb-8'>
-                <h2 className="text-3xl md:text-4xl text[var(--color-primary)] font-bold text-center mb-2 md:mb-4">
-                    🍽️ Our Chefs!
+        <div className="text-center sm:pb-20 pb-14 px-4">
+            <div>
+                <h2 className="text-[var(--color-primary)] text-2xl sm:text-4xl font-bold text-center md:mb-4 mb-2">
+                    🍽️ Our Chefs
                 </h2>
-                <p className="text-xs sm:text-sm text-center text-[var(--color-accent)] max-w-2xl mx-auto">
+                <p className="text-center text-[var(--color-accent)] max-w-2xl mx-auto text-xs sm:text-base md:mb-10 sm:mb-6 mb-4">
                     Get to know the talented writers and chefs behind our recipes and articles. Explore their stories and favorite dishes! 🌍✨
                 </p>
-          </div>
+            </div>
 
-            <div className="flex justify-center items-center flex-wrap gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10 mt-6 md:mt-12">
+            <div className="flex justify-center items-center flex-wrap gap-3 sm:gap-4 md:gap-6 lg:gap-8 mt-6">
                 {chefs.map((chef, index) => (
                     <div
                         key={index}

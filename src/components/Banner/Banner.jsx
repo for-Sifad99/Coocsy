@@ -38,7 +38,7 @@ const Banner = () => {
 
     return (
         <section
-            className="relative w-full sm:h-[70vh] h-[54vh] bg-no-repeat bg-center bg-cover"
+            className="relative w-full sm:h-[70vh] h-[54vh] bg-no-repeat bg-center bg-cover sm:mb-20 mb-14"
             style={{ backgroundImage: `url(${bannerImg})` }}
         >
             {/* Overlay */}

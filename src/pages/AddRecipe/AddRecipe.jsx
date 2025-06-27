@@ -131,7 +131,7 @@ const AddRecipe = () => {
                 </div>
             </div>
 
-            <section className="py-12 px-4 min-h-screen bg-[var(--color-section-bg)]">
+            <section className="py-8 sm:py-20 px-4 min-h-screen">
                 <h1 className="max-w-4xl mx-auto py-5 text-2xl sm:text-3xl md:text-4xl text-[var(--color-primary)] font-bold">Let's Add a Recipe! Here🧑‍🍳</h1>
 
                 <div className="max-w-4xl mx-auto bg-[var(--color-section-bg)] p-8 rounded-lg shadow shadow-red-300 border border-[var(--color-secondary)]">
@@ -147,7 +147,7 @@ const AddRecipe = () => {
                             </div>
                             <div>
                                 <label className="block mb-2 font-medium">Cuisine Type</label>
-                                <select name="cuisine" className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md">
+                                <select name="cuisine" className="w-full px-4 py-3 text-[#777D86] border-2 border-[var(--color-secondary)] rounded-md">
                                     <option value="">Select one</option>
                                     <option value="Italian">Italian</option>
                                     <option value="Mexican">Mexican</option>

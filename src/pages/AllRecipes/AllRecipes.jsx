@@ -50,11 +50,11 @@ const AllRecipes = () => {
                 />
             </Helmet>
 
-            <div className="px-4 sm:px-6 md:px-8 lg:px-16 py-8 md:py-10 lg:py-14 bg-[var(--color-section-bg)]">
+            <div className="px-4 sm:px-6 md:px-8 lg:px-16 py-8 sm:py-20">
                 {/* Section Header */}
-                <div className="text-center mb-5 sm:mb-7 md:mb-10 lg:mb-14 space-y-3 sm:space-y-4">
+                <div className="text-center mb-6 sm:mb-10 space-y-3 sm:space-y-4">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-primary)]">
-                        🍽️ Savor & Serve!
+                        🍽️ Savor & Serve
                     </h2>
                     <p className="text-sm sm:text-base md:text-lg text-[var(--color-accent)] max-w-md sm:max-w-xl md:max-w-2xl mx-auto">
                         A delicious collection of{' '}
@@ -67,7 +67,7 @@ const AllRecipes = () => {
                 </div>
 
                 {/* Search Form */}
-                <form className="mt-3 sm:mt-5" onSubmit={e => e.preventDefault()}>
+                <form onSubmit={e => e.preventDefault()}>
                     <div className="flex flex-col md:flex-row gap-3 items-stretch max-w-3xl mx-auto">
                         {/* Dropdown */}
                         <label className="flex items-center bg-[#e9e4e4] border-2 border-[#e9e4e4] rounded px-3 py-2 text-sm sm:text-base cursor-pointer select-none min-w-[148px] w-full md:w-auto">
@@ -110,11 +110,11 @@ const AllRecipes = () => {
                     </div>
                 </form>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:gap-6 md:gap-4 sm:gap-6 gap-4 mt-6">
                         {filteredRecipes.map(({ _id, image, title, likes = 0, cuisineType, prepTime }, i) => (
                             <div
                                 key={_id}
-                                className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-[360px] flex flex-col group animate__animated animate__fadeInUp"
+                                className="sm:w-auto max-w-[280px] w-full sm:mx-0 mx-auto bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-[360px] flex flex-col group animate__animated animate__fadeInUp"
                                 style={{ animationDelay: `${i * 0.2}s`, animationFillMode: 'both' }}
                             >
                                 {/* Image Section */}
