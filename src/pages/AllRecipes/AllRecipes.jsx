@@ -52,11 +52,11 @@ const AllRecipes = () => {
 
             <div className="px-4 sm:px-6 md:px-8 lg:px-16 py-8 sm:py-20">
                 {/* Section Header */}
-                <div className="text-center mb-6 sm:mb-10 space-y-3 sm:space-y-4">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-primary)]">
+                <div className="text-center mb-4 sm:mb-8 space-y-1 sm:space-y-4">
+                    <h2 className="text-xl sm:text-3xl md:text-4xl font-extrabold text-[var(--color-primary)]">
                         🍽️ Savor & Serve
                     </h2>
-                    <p className="text-sm sm:text-base md:text-lg text-[var(--color-accent)] max-w-md sm:max-w-xl md:max-w-2xl mx-auto">
+                    <p className="text-xs sm:text-sm md:text-base text-[var(--color-accent)] max-w-md sm:max-w-xl md:max-w-2xl mx-auto">
                         A delicious collection of{' '}
                         <span className="text-[var(--color-secondary)] font-semibold">
                             {filteredRecipes.length}

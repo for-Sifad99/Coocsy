@@ -5,13 +5,13 @@ import { Outlet } from 'react-router';
 const DashRoot = () => {
     return <>
         {/* Content */}
-        <section className='flex justify-between gap-6 p-6'>
+        <section className='flex justify-between gap-6 p-6 min-h-screen bg-[var(--color-section-bg)]'>
             {/* Sidebar Content */}
-            <div className='w-1/4 min-h-screen sticky bg-base-200 text-Black font-bold'>
+            <div>
                 <Sidebar />
             </div>
             {/* Main Content */}
-            <div className='w-3/4'>
+            <div className='flex-1'>
                 <Outlet />
             </div>
         </section>

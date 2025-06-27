@@ -4,7 +4,6 @@ import PrivetRouter from '../routes/PrivetRouter';
 import Root from '../layouts/Root';
 import DashRoot from '../layouts/DashRoot';
 import Home from '../pages/Home/Home';
-import Dashboard from '../pages/Dashboard/Dashboard/Dashboard';
 import AllRecipes from '../pages/AllRecipes/AllRecipes';
 import RecipeDetails from '../components/RecipeDetails/RecipeDetails';
 import AddRecipe from '../pages/AddRecipe/AddRecipe';
@@ -14,6 +13,7 @@ import Register from '../pages/Register/Register';
 import Login from '../pages/Login/Login';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import Loader from '../components/Loader/Loader';
+import Overview from '../pages/Dashboard/Overview/Overview';
 
 
 
@@ -69,8 +69,8 @@ const router = createBrowserRouter([
         element: <DashRoot />,
         children: [
             {
-                path : '/dash/dashboard',
-                Component: Dashboard ,
+                path: '/dash/overview', 
+                element: <Overview />
             },
         ]
     },
