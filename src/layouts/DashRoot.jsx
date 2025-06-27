@@ -3,19 +3,18 @@ import Sidebar from '../pages/Dashboard/Sidebar/Sidebar';
 import { Outlet } from 'react-router';
 
 const DashRoot = () => {
-    return <>
-        {/* Content */}
-        <section className='flex justify-between gap-6 p-6 min-h-screen bg-[var(--color-section-bg)]'>
-            {/* Sidebar Content */}
-            <div>
-                <Sidebar />
-            </div>
-            {/* Main Content */}
-            <div className='flex-1'>
-                <Outlet />
-            </div>
-        </section>
-    </>
+    return (
+        <div className="flex min-h-screen bg-[#f3f3f3] p-6 gap-6">
+                {/* Sidebar Content */}
+                <div>
+                    <Sidebar />
+                </div>
+                {/* Main Content */}
+                <div className='flex-1'>
+                    <Outlet />
+                </div>     
+        </div>
+    );
 };
 
 export default DashRoot;

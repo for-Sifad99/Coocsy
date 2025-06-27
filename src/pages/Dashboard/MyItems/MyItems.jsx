@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '../../Contexts/AuthContext'
+import { AuthContext } from '../../../Contexts/AuthContext'
 import { Link } from "react-router";
 import { FaHeart, FaUtensils, FaTags, FaClock, FaEdit, FaTrash } from 'react-icons/fa';
 import { TbMoodEmpty } from "react-icons/tb";
@@ -124,12 +124,12 @@ const MyRecipes = () => {
                 />
             </Helmet>
 
-            <div className="max-w-6xl mx-auto px-4 py-10">
+            <div className="py80">
                 <div className='mb-8'>
-                    <h2 className="text-3xl md:text-4xl text-[var(--color-primary)] font-bold text-center mb-2 md:mb-4">
+                    <h2 className="text-3xl md:text-4xl text-black font-bold mb-2 md:mb-4">
                         🍲 My Recipe Box
                     </h2>
-                    <p className="text-xs sm:text-sm text-center text-[var(--color-accent)] max-w-2xl mx-auto">
+                    <p className="text-xs sm:text-sm  text-gray-600 max-w-2xl">
                         Keep all your favorite recipes in one place! Add your own culinary creations or save dishes you love to try later. Let’s get cooking! 🍳✨
                     </p>
                 </div>

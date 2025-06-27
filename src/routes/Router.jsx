@@ -14,6 +14,9 @@ import Login from '../pages/Login/Login';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import Loader from '../components/Loader/Loader';
 import Overview from '../pages/Dashboard/Overview/Overview';
+import AllItems from '../pages/Dashboard/AllItems/AllItems.jsx/AllItems';
+import AddItems from '../pages/Dashboard/AddItems/AddItems';
+import MyItems from '../pages/Dashboard/MyItems/MyItems';
 
 
 
@@ -71,6 +74,18 @@ const router = createBrowserRouter([
             {
                 path: '/dash/overview', 
                 element: <Overview />
+            },
+            {
+                path: '/dash/allItems', 
+                element: <AllItems />
+            },
+            {
+                path: '/dash/addItems', 
+                element: <AddItems />
+            },
+            {
+                path: '/dash/myItems', 
+                element: <MyItems />
             },
         ]
     },
