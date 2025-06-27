@@ -64,10 +64,10 @@ const TopRecipes = () => {
                 </div>
 
                 {/* See All Recipes Button */}
-                <div className="mt-12 flex justify-center">
+                <div className="md:mt-12 sm:mt-8 mt-4 flex justify-center">
                     <button
                         onClick={() => navigate("/all-recipes")}
-                        className="flex gap-2 items-center hover:bg-red-100 transition text-lg px-8 py-3  bg-white text-red-500 font-semibold rounded-full group shadow-md"
+                        className="flex gap-2 items-center hover:bg-red-100 transition sm:text-lg sm:px-8 sm:py-3 text-base py-2 px-6  bg-white text-red-500 font-semibold rounded-full group shadow-md"
                     >
                         <span>See All Recipes</span>
                         <GoArrowRight className="transition-transform duration-300 ease-in-out group-hover:translate-x-2" />
