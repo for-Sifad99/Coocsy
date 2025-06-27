@@ -9,10 +9,10 @@ const FeaturedRecipes = () => {
     return (
         <section className="max-w-7xl mx-auto sm:mb-20 mb-14 px-4 md:px-10 xl:px-20">
                 <h2 className="text-[var(--color-primary)] text-2xl sm:text-4xl font-bold text-center md:mb-4 mb-2">
-                    🍽️ Top Recipes
+                    🍽️ Featured Recipes
                 </h2>
                 <p className="text-center text-[var(--color-accent)] max-w-2xl mx-auto text-xs sm:text-base md:mb-10 sm:mb-6 mb-4">
-                    Craving something amazing? Discover our most liked recipes handpicked just for you by food lovers worldwide! 🌍✨
+                Handpicked favorites loved by foodies—delicious, easy, and worth a try! 🍝✨
                 </p>
                 <Marquee
                     direction="left"
@@ -42,11 +42,11 @@ const FeaturedRecipes = () => {
                                 </div>
                                 <div className="p-3 flex flex-col">
                                     <div className="flex items-center gap-3 text-base font-medium">
-                                        <span className="text-gray-600 flex items-center">
+                                        <span className="text-base-200 flex items-center">
                                             <FaUtensils className="mr-1" /> {recipe.cuisineType}
                                         </span>
                                     </div>
-                                    <h3 className="text-2xl text-black font-semibold hover:underline cursor-pointer">
+                                    <h3 className="text-2xl text-[var(--color-primary)] font-semibold hover:underline cursor-pointer">
                                         {recipe.title}
                                     </h3>
                                     <Link to={`/recipe-details/${recipe._id}`}>

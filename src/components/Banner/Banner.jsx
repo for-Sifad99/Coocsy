@@ -54,7 +54,7 @@ const Banner = () => {
                     </h1>
 
                     {/* Description */}
-                    <p className="text-base sm:text-lg md:text-xl mb-4 sm:mb-6 px-2 font-semibold">
+                    <p className="text-sm sm:text-lg md:text-xl mb-4 sm:mb-6 px-2 font-semibold md:leading-7 sm:leading-5  leading-4">
                         Cooksy — your go-to destination to discover mouth-watering recipes from around the world and share your own culinary masterpieces!
                     </p>
 

@@ -5,6 +5,7 @@ import TopRecipes from '../../components/TopRecipes/TopRecipes';
 import FeaturedRecipes from '../../components/FeaturedRecipes/FeaturedRecipes';
 import Inspiration from '../../components/Inspiration/Inspiration';
 import OurChefs from '../../components/OurChefs/OursChefs';
+import Review from '../../components/Review/Review';
 
 
 const Home = () => {
@@ -26,7 +27,7 @@ const Home = () => {
                 <TopRecipes />
             </section>
 
-            {/* Top Recipes Section */}
+            {/* Featured Recipes Section */}
             <section>
                 <FeaturedRecipes />
             </section>
@@ -41,7 +42,10 @@ const Home = () => {
                 <OurChefs />
             </section>
 
-
+            {/* Review Section */}
+            <section>
+                <Review />
+            </section>
         </>
     );
 };
