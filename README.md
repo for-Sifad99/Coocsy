@@ -9,7 +9,7 @@ _____
 _____
 
 🌐 Live Site ---->
-👉 Cooksy Live : (teal-biscochitos-d75707.netlify.app)
+👉 Cooksy Live : (https://teal-biscochitos-d75707.netlify.app/)
 
 
 _____
