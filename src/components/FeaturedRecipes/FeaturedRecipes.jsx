@@ -50,7 +50,7 @@ const FeaturedRecipes = () => {
                                         {recipe.title}
                                     </h3>
                                     <Link to={`/recipe-details/${recipe._id}`}>
-                                        <button className="mt-2 bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-xl w-full transition-colors">
+                                        <button className="mt-2 bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-xl w-full transition-colors cursor-pointer">
                                             View Details
                                         </button>
                                     </Link>

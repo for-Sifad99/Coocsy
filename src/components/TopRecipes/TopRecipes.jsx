@@ -28,11 +28,11 @@ const TopRecipes = () => {
                     Craving something amazing? Discover our most liked recipes handpicked just for you by food lovers worldwide! 🌍✨
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  lg:grid-cols-4 xl:gap-6 md:gap-4 sm:gap-6 gap-4 ">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {recipes.map((recipe) => (
                         <div
                             key={recipe._id}
-                            className="sm:w-auto max-w-[280px] w-full sm:mx-0 mx-auto bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 relative"
+                            className="sm:w-auto max-w-[280px] w-full sm:mx-0 mx-auto bg-[var(--color-bg)] rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 relative"
                         >
                             <div className="relative">
                                 <img
@@ -46,15 +46,15 @@ const TopRecipes = () => {
                             </div>
                             <div className="p-3 flex flex-col">
                                 <div className="flex items-center gap-3 text-base font-medium">
-                                    <span className="text-gray-600 flex items-center">
+                                    <span className="text-[var(--color-accent)] flex items-center">
                                         <FaUtensils className="mr-1" /> {recipe.cuisineType}
                                     </span>
                                 </div>
-                                <h3 className="text-3xl text-black font-semibold hover:underline cursor-pointer">
+                                <h3 className="text-3xl text-[var(--color-primary)] font-semibold hover:underline cursor-pointer">
                                     {recipe.title}
                                 </h3>
                                 <Link to={`/recipe-details/${recipe._id}`}>
-                                    <button className="mt-2 bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-xl w-full transition-colors">
+                                    <button className="mt-2 bg-red-500 hover:bg-red-600 text-white font-medium py-2 px-4 rounded-xl w-full transition-colors cursor-pointer">
                                         View Details
                                     </button>
                                 </Link>

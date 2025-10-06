@@ -110,11 +110,11 @@ const AllRecipes = () => {
                     </div>
                 </form>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:gap-6 md:gap-4 sm:gap-6 gap-4 mt-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
                         {filteredRecipes.map(({ _id, image, title, likes = 0, cuisineType, prepTime }, i) => (
                             <div
                                 key={_id}
-                                className="sm:w-auto max-w-[280px] w-full sm:mx-0 mx-auto bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-[360px] flex flex-col group animate__animated animate__fadeInUp"
+                                className="sm:w-auto max-w-[280px] w-full sm:mx-0 mx-auto bg-[var(--color-bg)]e rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 h-[360px] flex flex-col group animate__animated animate__fadeInUp"
                                 style={{ animationDelay: `${i * 0.2}s`, animationFillMode: 'both' }}
                             >
                                 {/* Image Section */}
@@ -131,7 +131,7 @@ const AllRecipes = () => {
 
                                 {/* Info Section */}
                                 <div className="h-[43%] p-3 flex flex-col justify-between">
-                                    <div className="flex gap-5 text-sm font-medium text-gray-600">
+                                    <div className="flex gap-5 text-sm font-medium text-[var(--color-accent)]">
                                         <div className="flex items-center gap-1">
                                             <FaUtensils />
                                             <span>{cuisineType}</span>
@@ -144,14 +144,14 @@ const AllRecipes = () => {
 
                                     <div>
                                         <h3
-                                            className="text-2xl text-black font-bold hover:underline cursor-pointer line-clamp-1"
+                                            className="text-2xl text-[var(--color-primary)] font-bold hover:underline cursor-pointer line-clamp-1"
                                         >
                                             {title}
                                         </h3>
                                     </div>
 
                                     <Link to={`/recipe-details/${_id}`}>
-                                        <button className="bg-red-500 hover:bg-[var(--color-secondary)] text-white text-sm font-medium py-1.5 px-3 rounded-full w-full transition-colors">
+                                        <button className="bg-red-500 hover:bg-[var(--color-secondary)] text-white text-sm font-medium py-1.5 px-3 rounded-full w-full transition-colors cursor-pointer">
                                             View Details
                                         </button>
                                     </Link>
