@@ -38,7 +38,7 @@ const Banner = () => {
 
     return (
         <section
-            className="relative w-full sm:h-[70vh] h-[54vh] bg-no-repeat bg-center bg-cover sm:mb-20 mb-14"
+            className="relative w-full h-[54vh] sm:h-[60vh] md:h-[89vh] lg:h-[86vh]  bg-no-repeat bg-center bg-cover sm:mb-20 mb-14"
             style={{ backgroundImage: `url(${bannerImg})` }}
         >
             {/* Overlay */}
@@ -50,7 +50,6 @@ const Banner = () => {
                             <span className='text-5xl sm:text-6xl md:text-9xl font-extrabold -rotate-16 inline-block'>ｃ</span>
                             <span className="text-red-600">oo</span>ksy
                         </strong>
-
                     </h1>
 
                     {/* Description */}

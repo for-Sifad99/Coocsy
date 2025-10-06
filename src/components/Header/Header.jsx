@@ -1,5 +1,5 @@
 import { Link, NavLink, useLocation } from "react-router";
-import { FaUtensils, FaUserPlus, FaBars, FaTimes, FaChevronUp, FaChevronDown } from "react-icons/fa";
+import { FaUtensils, FaUserPlus, FaBars, FaTimes } from "react-icons/fa";
 import { IoMdLogIn } from "react-icons/io";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../Contexts/AuthContext";
@@ -170,7 +170,7 @@ const Header = () => {
                     {user?.email && <UserProfile />}
 
                     <button
-                        className="text-2xl text-[var(--color-primary)]"
+                        className="text-2xl text-[var(--color-primary)] cursor-pointer"
                         onClick={() => setIsOpen(true)}
                     >
                         <FaBars />
@@ -223,7 +223,7 @@ const Header = () => {
                                     </svg>
                                 </label>
                                 <button
-                                    className="text-2xl text-[var(--color-primary)]"
+                                    className="text-2xl text-[var(--color-primary)] cursor-pointer"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     <FaTimes />
