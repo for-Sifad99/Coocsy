@@ -44,6 +44,7 @@ const TopRecipes = () => {
                                     <FaHeart className="inline-block mr-1" /> {recipe.likes}
                                 </button>
                             </div>
+                            
                             <div className="p-3 flex flex-col">
                                 <div className="flex items-center gap-3 text-base font-medium">
                                     <span className="text-[var(--color-accent)] flex items-center">

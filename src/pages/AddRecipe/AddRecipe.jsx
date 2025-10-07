@@ -131,23 +131,29 @@ const AddRecipe = () => {
                 </div>
             </div>
 
-            <section className="py-8 sm:py-20 px-4 min-h-screen">
-                <h1 className="max-w-4xl mx-auto py-5 text-2xl sm:text-3xl md:text-4xl text-[var(--color-primary)] font-bold">Let's Add a Recipe! Here🧑‍🍳</h1>
+            <section className="w-full py-8 sm:py-20 px-4 sm:px-8 min-h-screen">
+                <h1 className="py-5 text-2xl sm:text-3xl md:text-4xl text-[var(--color-primary)] font-bold">Let's Add a Recipe! Here🧑‍🍳</h1>
 
-                <div className="max-w-4xl mx-auto bg-[var(--color-section-bg)] p-8 rounded-lg shadow shadow-red-300 border border-[var(--color-secondary)]">
+                <div className="bg-[var(--color-section-bg)] w-full md:w-1/2">
                     <form onSubmit={handleSubmit} className="space-y-6 text-[var(--color-accent)] text-base sm:text-lg">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div>
-                                <label className="block mb-2 font-medium">Image URL</label>
-                                <input type="text" name="image" placeholder="Paste your image URL" className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md" />
-                            </div>
-                            <div>
-                                <label className="block mb-2 font-medium">Recipe Title</label>
-                                <input type="text" name="title" placeholder="Enter recipe title" className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md" />
-                            </div>
+
+                        {/* Title */}
+                        <div>
+                            <label className="block mb-2 font-medium">Recipe Title</label>
+                            <input type="text" name="title" placeholder="Enter recipe title" className="w-full px-2 py-2.5 bg-[var(--color-bg)] focus:outline-none focus:ring-2 ring-[var(--color-secondary)]/50 rounded" />
+                        </div>
+
+                        {/* Image */}
+                        <div>
+                            <label className="block mb-2 font-medium">Image URL</label>
+                            <input type="text" name="image" placeholder="Paste your image URL" className="w-full px-2 py-2.5 bg-[var(--color-bg)] focus:outline-none focus:ring-2 ring-[var(--color-secondary)]/50 rounded" />
+                        </div>
+
+                        {/* Cuisine type and Preparation time */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4">
                             <div>
                                 <label className="block mb-2 font-medium">Cuisine Type</label>
-                                <select name="cuisine" className="w-full px-4 py-3 text-[#777D86] border-2 border-[var(--color-secondary)] rounded-md">
+                                <select name="cuisine" className="w-full text-[#777D86] px-2 py-2.5 bg-[var(--color-bg)] focus:outline-none focus:ring-2 ring-[var(--color-secondary)]/50 rounded">
                                     <option value="">Select one</option>
                                     <option value="Italian">Italian</option>
                                     <option value="Mexican">Mexican</option>
@@ -156,7 +162,15 @@ const AddRecipe = () => {
                                     <option value="Others">Others</option>
                                 </select>
                             </div>
+
+                            <div>
+                                <label className="block mb-2 font-medium">Cook Time (min)</label>
+                                <input type="number" name="preparationTime"
+                                    placeholder="Enter cook time"
+                                    className="w-full px-2 py-2.5 bg-[var(--color-bg)] focus:outline-none focus:ring-2 ring-[var(--color-secondary)]/50 rounded" />
+                            </div>
                         </div>
+
 
                         {/* Ingredients */}
                         <div>
@@ -167,23 +181,27 @@ const AddRecipe = () => {
                                     value={ingredientInput}
                                     onChange={(e) => setIngredientInput(e.target.value)}
                                     placeholder="Type ingredient and click add"
-                                    className="flex-grow px-4 py-2 border-2 border-[var(--color-secondary)] rounded-md"
+                                    className="flex-grow w-full px-2 py-2.5 bg-[var(--color-bg)] focus:outline-none focus:ring-2 ring-[var(--color-secondary)]/50 rounded"
                                 />
-                                <button type="button" onClick={addIngredient} className="bg-[var(--color-secondary)] text-white px-3 py-2 rounded-md hover:bg-red-400">
+                                <button type="button" onClick={addIngredient} className="bg-[var(--color-secondary)] text-white px-3 py-2 rounded-md hover:bg-red-400 cursor-pointer">
                                     <FaPlus />
                                 </button>
                             </div>
-                            <ul className="list-disc pl-5">
+                            <ul className="list-disc">
                                 {ingredients.map((item, index) => (
-                                    <li key={index} className="flex justify-between items-center gap-2">
-                                        {item}
-                                        <button type="button" onClick={() => removeIngredient(index)} className="text-red-500 hover:text-red-700">
+                                    <li key={index} className="flex justify-between items-center mt-2">
+                                        <div className="flex items-center gap-2">
+                                            <strong>{index}.</strong>
+                                            {item}
+                                        </div>
+                                        <button type="button" onClick={() => removeIngredient(index)} className="bg-[var(--color-secondary)] text-white px-3 py-2 rounded-md hover:bg-red-400 cursor-pointer">
                                             <FaTrash />
                                         </button>
                                     </li>
                                 ))}
                             </ul>
                         </div>
+
 
                         {/* Instructions */}
                         <div>
@@ -194,17 +212,20 @@ const AddRecipe = () => {
                                     value={instructionInput}
                                     onChange={(e) => setInstructionInput(e.target.value)}
                                     placeholder="Type instruction and click add"
-                                    className="flex-grow px-4 py-2 border-2 border-[var(--color-secondary)] rounded-md"
+                                    className="flex-grow w-full px-2 py-2.5 bg-[var(--color-bg)] focus:outline-none focus:ring-2 ring-[var(--color-secondary)]/50 rounded"
                                 />
-                                <button type="button" onClick={addInstruction} className="bg-[var(--color-secondary)] text-white px-3 py-2 rounded-md hover:bg-red-400">
+                                <button type="button" onClick={addInstruction} className="bg-[var(--color-secondary)] text-white px-3 py-2 rounded-md hover:bg-red-400 cursor-pointer">
                                     <FaPlus />
                                 </button>
                             </div>
-                            <ul className="list-decimal pl-5">
+                            <ul className="list-decimal">
                                 {instructions.map((item, index) => (
-                                    <li key={index} className="flex justify-between items-center gap-2">
-                                        {item}
-                                        <button type="button" onClick={() => removeInstruction(index)} className="text-red-500 hover:text-red-700">
+                                    <li key={index} className="flex justify-between items-center mt-2">
+                                        <div className="flex items-center gap-2">
+                                            <strong>{index}.</strong>
+                                            {item}
+                                        </div>
+                                        <button type="button" onClick={() => removeInstruction(index)} className="bg-[var(--color-secondary)] text-white px-3 py-2 rounded-md hover:bg-red-400 cursor-pointer">
                                             <FaTrash />
                                         </button>
                                     </li>
@@ -212,22 +233,16 @@ const AddRecipe = () => {
                             </ul>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label className="block mb-2 font-medium">Preparation Time (in minutes)</label>
-                                <input type="number" name="preparationTime" className="w-full px-4 py-3 border-2 border-[var(--color-secondary)] rounded-md" />
-                            </div>
-
-                            <div>
-                                <label className="block mb-2 font-medium">Categories</label>
-                                <div className="flex flex-wrap gap-4">
-                                    {categories.map((category) => (
-                                        <label key={category} className="flex items-center gap-2 text-sm sm:text-base">
-                                            <input type="radio" name="categories" value={category} className="accent-[var(--color-secondary)]" />
-                                            {category}
-                                        </label>
-                                    ))}
-                                </div>
+                        {/* Categories */}
+                        <div>
+                            <label className="block mb-2 font-medium">Categories</label>
+                            <div className="flex flex-wrap space-x-4">
+                                {categories.map((category) => (
+                                    <label key={category} className="flex items-center gap-1 text-sm sm:text-base cursor-pointer">
+                                        <input type="radio" name="categories" value={category} className="accent-[var(--color-secondary)]" />
+                                        {category}
+                                    </label>
+                                ))}
                             </div>
                         </div>
 

@@ -9,8 +9,7 @@ _____
 _____
 
 🌐 Live Site ---->
-👉 Cooksy Live : (https://cooksycoo.netlify.app/)
-
+- **Live Site:** [Live Demo!](https://cooksycoo.netlify.app/) 
 
 _____
 _____
@@ -18,23 +17,23 @@ _____
 
 🛠️ Technologies & Tools Used
 Cooksy has been crafted with modern tools and technologies to give users the best possible experience! Here's a breakdown of what powers the app:
-⚛️ React 19
-🧠 React Helmet Async
-🔁 React Router v7
-🌈 Tailwind CSS v4
-🎨 Animate.css
-🔥 Firebase v11
-🛡️ Environment Variables
-🔒 Google Sign-In
-📦 Vite + Tailwind Plugin
-🍭 React Toastify v11
-🍬 SweetAlert2
-✨ Lottie + Dotlottie
-⌨️ React Simple Typewriter
-🔄 React Spinners
-🎨 React Icons
-💬 Tooltips & Reveal Effects
-🌐 Toastify (CSS)
+- ⚛️ React 19
+- 🧠 React Helmet Async
+- 🔁 React Router v7
+- 🌈 Tailwind CSS v4
+- 🎨 Animate.css
+- 🔥 Firebase v11
+- 🛡️ Environment Variables
+- 🔒 Google Sign-In
+- 📦 Vite + Tailwind Plugin
+- 🍭 React Toastify v11
+- 🍬 SweetAlert2
+- ✨ Lottie + Dotlottie
+- ⌨️ React Simple Typewriter
+- 🔄 React Spinners
+- 🎨 React Icons
+- 💬 Tooltips & Reveal Effects
+- 🌐 Toastify (CSS)
 
 _____
 _____
@@ -63,7 +62,7 @@ _____
 
 📦 Installation Instructions
 1. Clone the repository
-git clone https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-for-Sifad99
+git clone https://github.com/for-Sifad99/Coocsy-client
 
 2. Navigate to project folder
 cd cooksy

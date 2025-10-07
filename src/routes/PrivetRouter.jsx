@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../Contexts/AuthContext'; 
-import { Navigate, useLocation } from 'react-router'; 
+import { AuthContext } from '../Contexts/AuthContext';
+import { Navigate, useLocation } from 'react-router';
 import Loader from '../components/Loader/Loader';
 
 const PrivetRouter = ({ children }) => {
@@ -12,13 +12,13 @@ const PrivetRouter = ({ children }) => {
         return <Loader />
     }
 
-    // return children after user login
-    if (user && user?.email) {
-        return children;
+    // navigate user where he/she want to go
+    if (!user && !user?.email) {
+        return <Navigate to='/login' state={{ from: location?.pathname }} replace />;
     }
 
-    // navigate user where he/she want to go
-    return <Navigate to='/login' state={{ from: location?.pathname }} replace />;
+    // return children after user login
+    return children;
 };
 
 export default PrivetRouter;

@@ -75,7 +75,7 @@ const MyRecipes = () => {
             toast.error('Delete failed: ' + err.message);
         }
     };
-
+    console.log(recipes)
     const openUpdateModal = (recipe) => {
         setCurrentRecipe(recipe);
         setFormData({
@@ -164,11 +164,11 @@ const MyRecipes = () => {
                         </Link>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         {recipes.map(recipe => (
                             <div
                                 key={recipe._id}
-                                className="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden group relative"
+                                className="bg-[var(--color-bg)] rounded-2xl shadow hover:shadow-lg transition overflow-hidden group relative"
                             >
                                 {/* ICONS TOP CORNER */}
                                 <div className="flex justify-between px-4 pt-4 absolute z-10 w-full">
@@ -183,7 +183,7 @@ const MyRecipes = () => {
                                 </div>
 
                                 {/* IMAGE */}
-                                <div className="h-48 overflow-hidden">
+                                <div className="h-52 overflow-hidden">
                                     <img
                                         src={recipe.image}
                                         alt={recipe.title}
@@ -192,24 +192,64 @@ const MyRecipes = () => {
                                 </div>
 
                                 {/* TEXT CONTENT */}
-                                <div className="p-4 space-y-1">
-                                    <div className="flex gap-4 text-sm text-gray-500">
+                                <div className="p-3 space-y-0.5">
+
+                                    {/* CATEGORIES */}
+                                    <div className="flex gap-4 text-sm text-[var(--color-accent)]">
                                         <div className="flex items-center gap-1">
                                             <FaTags className="text-blue-500" />
                                             <span>{recipe.categories}</span>
                                         </div>
+
+                                        {/* PREPSRE TIME */}
                                         <div className="flex items-center gap-1">
                                             <FaClock className="text-green-500" />
                                             <span>{recipe.prepTime} min</span>
                                         </div>
                                     </div>
 
-                                    <h3 className="text-2xl font-bold text-black">{recipe.title}</h3>
-                                    <p className="text-sm text-gray-700"><strong>Ingredients:</strong> {recipe.ingredients}</p>
-                                    <p className="text-sm text-gray-700"><strong>Instructions:</strong> {recipe.instructions}</p>
+                                    {/* TITLE */}
+                                    <h3 className="text-2xl font-bold text-[var(--color-primary)">{recipe.title}</h3>
+
+                                    {/* INGREDIENTS */}
+                                    <p className="text-sm text-[var(--color-accent)]">
+                                        <strong>Ingredients: </strong>
+                                        {(
+                                            Array.isArray(recipe.ingredients)
+                                                ? recipe.ingredients
+                                                : typeof recipe.ingredients === 'string' && recipe.ingredients.length > 0
+                                                    ? [recipe.ingredients]
+                                                    : []
+                                        ).map((ingredient, index, arr) => {
+                                            const lastIndex = arr.length - 1;
+                                            return (
+                                                <span key={index}>
+                                                    {ingredient}{index < lastIndex ? ', ' : '.'}
+                                                </span>
+                                            );
+                                        })}
+                                    </p>
+
+                                    {/* INSTRUCTIONS */}
+                                    <span className="text-sm text-[var(--color-accent)]"><strong>Instructions: </strong>
+                                        {(
+                                            Array.isArray(recipe.instructions)
+                                                ? recipe.instructions
+                                                : typeof recipe.instructions === 'string' && recipe.instructions.length > 0
+                                                    ? [recipe.instructions]
+                                                    : []
+                                        ).map((instruction, index, arr) => {
+                                            const lastIndex = arr.length - 1;
+                                            return (
+                                                <span key={index}>
+                                                    {instruction}{index < lastIndex ? ', ' : '.'}
+                                                </span>
+                                            );
+                                        })}
+                                    </span>
 
                                     {/* BUTTONS */}
-                                    <div className="flex justify-between gap-2 mt-4">
+                                    <div className="flex justify-between gap-2 mt-2.5">
                                         <button
                                             onClick={() => openUpdateModal(recipe)}
                                             className="w-1/2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm flex items-center justify-center gap-2"
